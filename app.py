@@ -357,7 +357,7 @@ Rules:
 """
 
 
-@app.get("/api/pattern-radar")
+@app.route("/api/pattern-radar", methods=["GET", "POST"])
 def pattern_radar():
     uid, err = require_user()
     if err:
@@ -392,18 +392,64 @@ def pattern_radar():
         + __import__("json").dumps(journal_entries, ensure_ascii=False)
     )
 
+    radar_schema = {
+        "type": "OBJECT",
+        "properties": {
+            "themes": {
+                "type": "ARRAY",
+                "items": {
+                    "type": "OBJECT",
+                    "properties": {
+                        "name": {"type": "STRING"},
+                        "summary": {"type": "STRING"},
+                        "frequency": {"type": "INTEGER"},
+                    },
+                    "required": ["name", "summary", "frequency"],
+                },
+            },
+            "loops": {
+                "type": "ARRAY",
+                "items": {
+                    "type": "OBJECT",
+                    "properties": {
+                        "name": {"type": "STRING"},
+                        "summary": {"type": "STRING"},
+                    },
+                    "required": ["name", "summary"],
+                },
+            },
+            "shift": {"type": "STRING"},
+            "question": {"type": "STRING"},
+        },
+        "required": ["themes", "loops", "shift", "question"],
+    }
+
     try:
         response = gemini().models.generate_content(
             model=MODEL,
             contents=prompt,
             config=genai_types.GenerateContentConfig(
-                temperature=0.3,
-                max_output_tokens=1200,
+                temperature=0.2,
+                max_output_tokens=2000,
                 response_mime_type="application/json",
+                response_schema=radar_schema,
             ),
         )
 
-        result = __import__("json").loads(response.text)
+        # Prefer the SDK's parsed structured result when available.
+        result = getattr(response, "parsed", None)
+
+        if result is None:
+            raw = (response.text or "").strip()
+
+            # Defensive cleanup if the model still returns a fenced JSON block.
+            if raw.startswith("```"):
+                raw = raw.replace("```json", "", 1).replace("```", "", 1).strip()
+
+            result = __import__("json").loads(raw)
+
+        if not isinstance(result, dict):
+            raise ValueError("Gemini returned an unexpected Pattern Radar structure")
 
     except Exception as exc:
         log.exception("pattern radar failed")

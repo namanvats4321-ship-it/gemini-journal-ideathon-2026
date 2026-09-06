@@ -647,6 +647,703 @@ footer button{margin-top:10px}
 }
 
 
+
+/* ===== TARGET DASHBOARD POLISH ===== */
+
+.hero{
+  min-height:245px;
+  padding:28px 0 30px;
+  overflow:hidden;
+  border-radius:24px;
+}
+
+.hero:before{
+  right:-8%;
+  top:-80px;
+  width:760px;
+  height:300px;
+  background:
+    radial-gradient(circle at 68% 45%,rgba(255,180,90,.22),transparent 18%),
+    radial-gradient(ellipse at 62% 55%,rgba(70,130,220,.22),transparent 42%),
+    radial-gradient(ellipse at 35% 65%,rgba(120,70,210,.18),transparent 48%);
+  filter:blur(28px);
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  left:-5%;
+  right:-5%;
+  bottom:-35px;
+  height:145px;
+  opacity:.42;
+  background:
+    linear-gradient(145deg,
+      transparent 0 20%,
+      rgba(24,34,64,.85) 20% 35%,
+      rgba(8,15,29,.95) 35% 52%,
+      rgba(5,9,18,1) 52% 100%);
+  clip-path:polygon(
+    0 78%,8% 54%,15% 70%,24% 32%,31% 61%,
+    39% 43%,48% 72%,57% 28%,66% 62%,
+    75% 38%,84% 65%,92% 44%,100% 69%,100% 100%,0 100%
+  );
+  pointer-events:none;
+}
+
+.hero h1{
+  font-size:58px;
+  letter-spacing:-2.8px;
+  line-height:.98;
+}
+
+.hero p{
+  font-size:17px;
+  color:#aebbd6;
+}
+
+.hero-quote{
+  position:absolute;
+  right:22px;
+  top:15px;
+  padding:12px 18px;
+  border:1px solid rgba(169,140,255,.25);
+  border-radius:999px;
+  background:rgba(15,22,45,.62);
+  color:#e7e4f7;
+  font-size:12px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 15px 45px rgba(0,0,0,.2);
+}
+
+.hero-motto{
+  position:absolute;
+  right:18px;
+  top:75px;
+  color:#9da9df;
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:22px;
+  transform:rotate(-4deg);
+  opacity:.85;
+}
+
+.extra-features{
+  margin-top:18px;
+  padding:18px;
+  border:1px solid rgba(120,245,189,.10);
+  border-radius:20px;
+  background:linear-gradient(
+    145deg,
+    rgba(20,29,55,.82),
+    rgba(8,13,24,.88)
+  );
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+}
+
+.extra-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.extra-title{
+  font-size:15px;
+  font-weight:800;
+}
+
+.extra-sub{
+  font-size:11px;
+  color:#8290a7;
+  margin-left:8px;
+}
+
+.extra-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.extra-card{
+  min-height:90px;
+  padding:15px;
+  border:1px solid rgba(120,150,210,.12);
+  border-radius:15px;
+  background:rgba(255,255,255,.025);
+  transition:.2s ease;
+}
+
+.extra-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(169,140,255,.32);
+  background:rgba(169,140,255,.06);
+}
+
+.extra-icon{
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  margin-bottom:9px;
+  font-size:16px;
+  background:rgba(120,100,255,.15);
+  color:#c8b9ff;
+}
+
+.extra-card:nth-child(2) .extra-icon{
+  background:rgba(255,125,70,.14);
+  color:#ffae83;
+}
+
+.extra-card:nth-child(3) .extra-icon{
+  background:rgba(70,120,255,.15);
+  color:#8db4ff;
+}
+
+.extra-card:nth-child(4) .extra-icon{
+  background:rgba(50,230,170,.14);
+  color:#68f0c1;
+}
+
+.extra-card strong{
+  display:block;
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+.extra-card span{
+  color:#75839b;
+  font-size:10px;
+  line-height:1.45;
+}
+
+/* BIG SAVE CONFIRMATION */
+.toast{
+  left:50% !important;
+  right:auto !important;
+  bottom:38px !important;
+  width:min(520px,calc(100vw - 40px));
+  min-width:0 !important;
+  padding:20px 24px !important;
+  border-radius:18px !important;
+  transform:translateX(-50%) translateY(35px) !important;
+  background:linear-gradient(
+    135deg,
+    rgba(17,31,27,.97),
+    rgba(23,17,42,.97)
+  ) !important;
+  border:1px solid rgba(120,245,189,.35) !important;
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.62),
+    0 0 45px rgba(120,245,189,.13) !important;
+}
+
+.toast.show{
+  transform:translateX(-50%) translateY(0) !important;
+  opacity:1 !important;
+}
+
+.toast-icon{
+  width:42px !important;
+  height:42px !important;
+  font-size:18px !important;
+}
+
+.toast-title{
+  font-size:15px !important;
+}
+
+.toast-sub{
+  font-size:11px !important;
+  margin-top:5px !important;
+}
+
+@media(max-width:900px){
+  .extra-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:620px){
+  .hero h1{
+    font-size:42px;
+  }
+
+  .hero-quote,
+  .hero-motto{
+    display:none;
+  }
+
+  .extra-grid{
+    grid-template-columns:1fr;
+  }
+
+  .toast{
+    left:20px !important;
+    right:20px !important;
+    width:auto !important;
+    transform:translateY(35px) !important;
+  }
+
+  .toast.show{
+    transform:translateY(0) !important;
+  }
+}
+
+
+/* ===== NAVIGATION / PRIVACY / SETTINGS POLISH ===== */
+
+.privacy-center,
+.settings-panel{
+  margin-top:26px;
+  padding:30px;
+  scroll-margin-top:105px;
+  background:
+    radial-gradient(circle at 90% 5%,rgba(80,210,170,.09),transparent 28%),
+    linear-gradient(145deg,rgba(12,24,20,.96),rgba(7,13,12,.98));
+}
+
+.section-kicker{
+  font-size:10px;
+  letter-spacing:2px;
+  color:#6e8c84;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.privacy-head,
+.settings-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:25px;
+  margin-bottom:26px;
+}
+
+.privacy-head h2,
+.settings-head h2{
+  margin:0 0 8px;
+  font-size:28px;
+  letter-spacing:-.7px;
+}
+
+.privacy-head p,
+.settings-head p{
+  margin:0;
+  max-width:720px;
+  color:#78918b;
+  line-height:1.65;
+}
+
+.status-pill{
+  white-space:nowrap;
+  border:1px solid rgba(93,255,190,.25);
+  background:rgba(52,220,160,.07);
+  color:#63f0b5;
+  padding:9px 13px;
+  border-radius:999px;
+  font-size:10px;
+  letter-spacing:1px;
+  font-weight:800;
+}
+
+.privacy-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.privacy-feature{
+  min-height:170px;
+  padding:22px;
+  border:1px solid rgba(103,145,135,.18);
+  border-radius:18px;
+  background:rgba(6,13,12,.58);
+}
+
+.privacy-feature-icon{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:rgba(69,236,177,.08);
+  color:#68efb7;
+  font-size:18px;
+  margin-bottom:16px;
+}
+
+.privacy-feature h3{
+  margin:0 0 8px;
+  font-size:15px;
+}
+
+.privacy-feature p{
+  color:#718781;
+  font-size:12px;
+  line-height:1.6;
+  margin:0 0 14px;
+}
+
+.privacy-live{
+  color:#59e8ad;
+  font-size:10px;
+  font-weight:700;
+}
+
+.privacy-controls{
+  padding:22px;
+  border:1px solid rgba(103,145,135,.18);
+  border-radius:18px;
+  background:rgba(3,9,8,.55);
+}
+
+.privacy-controls > div:first-child{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-bottom:15px;
+}
+
+.privacy-controls strong{
+  font-size:14px;
+}
+
+.privacy-controls span{
+  color:#708780;
+  font-size:11px;
+}
+
+.privacy-input-row{
+  display:flex;
+  gap:10px;
+}
+
+.privacy-input-row input{
+  flex:1;
+  min-width:0;
+}
+
+.privacy-input-row button{
+  white-space:nowrap;
+}
+
+.privacy-note{
+  margin-top:15px;
+  color:#647a75;
+  font-size:11px;
+  display:flex;
+  gap:9px;
+  align-items:center;
+}
+
+.privacy-note span{
+  color:#65efb5;
+}
+
+.settings-list{
+  border:1px solid rgba(103,145,135,.18);
+  border-radius:18px;
+  overflow:hidden;
+  background:rgba(3,9,8,.5);
+}
+
+.setting-row{
+  display:grid;
+  grid-template-columns:44px 1fr auto;
+  gap:16px;
+  align-items:center;
+  padding:19px 20px;
+  border-bottom:1px solid rgba(103,145,135,.12);
+}
+
+.setting-row:last-child{
+  border-bottom:0;
+}
+
+.setting-icon{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:rgba(92,73,180,.13);
+  color:#b9a8ff;
+  font-weight:700;
+}
+
+.setting-copy{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.setting-copy strong{
+  font-size:13px;
+}
+
+.setting-copy span{
+  color:#6d827d;
+  font-size:11px;
+  line-height:1.5;
+}
+
+.setting-value{
+  color:#63eeb4;
+  font-size:9px;
+  letter-spacing:1.2px;
+  font-weight:800;
+}
+
+.settings-about{
+  margin-top:18px;
+  padding:20px;
+  border-radius:18px;
+  border:1px solid rgba(120,100,220,.17);
+  background:linear-gradient(120deg,rgba(45,38,90,.25),rgba(9,17,16,.35));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.settings-about > div{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.settings-about strong{
+  font-size:14px;
+}
+
+.settings-about span{
+  color:#71847f;
+  font-size:11px;
+}
+
+.version-chip{
+  color:#aaa0f2!important;
+  border:1px solid rgba(150,130,255,.22);
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:9px!important;
+  letter-spacing:1px;
+  font-weight:800;
+}
+
+@media(max-width:900px){
+  .privacy-grid{
+    grid-template-columns:1fr;
+  }
+
+  .privacy-head,
+  .settings-head{
+    flex-direction:column;
+  }
+
+  .privacy-input-row{
+    flex-direction:column;
+  }
+
+  .setting-row{
+    grid-template-columns:40px 1fr;
+  }
+
+  .setting-value{
+    grid-column:2;
+  }
+}
+
+
+/* ===== INTERACTIVE FEATURE CARDS ===== */
+
+.extra-card{
+  cursor:pointer;
+  position:relative;
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+.extra-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(105,240,185,.32);
+  background:linear-gradient(145deg,rgba(24,31,54,.95),rgba(11,18,29,.98));
+  box-shadow:0 16px 40px rgba(0,0,0,.22);
+}
+
+.extra-card:active{
+  transform:translateY(-1px) scale(.99);
+}
+
+.extra-card small{
+  display:block;
+  margin-top:14px;
+  color:#63eeb4;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+}
+
+/* ===== GUIDED PROMPT MODAL ===== */
+
+.prompt-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(1,5,5,.76);
+  backdrop-filter:blur(12px);
+}
+
+.prompt-overlay.show{
+  display:flex;
+}
+
+.prompt-modal{
+  width:min(620px,100%);
+  border:1px solid rgba(105,240,185,.2);
+  border-radius:24px;
+  padding:28px;
+  background:
+    radial-gradient(circle at 85% 0%,rgba(112,82,230,.2),transparent 30%),
+    linear-gradient(145deg,#101c1a,#080e0d);
+  box-shadow:0 30px 100px rgba(0,0,0,.55);
+}
+
+.prompt-modal-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:20px;
+}
+
+.prompt-modal-head h2{
+  margin:0 0 7px;
+  font-size:24px;
+}
+
+.prompt-modal-head p{
+  margin:0;
+  color:#758b85;
+  font-size:12px;
+}
+
+.prompt-close{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:1px solid rgba(130,160,150,.18);
+  background:rgba(255,255,255,.03);
+  color:#9cb0aa;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.prompt-list{
+  display:grid;
+  gap:10px;
+}
+
+.prompt-option{
+  width:100%;
+  text-align:left;
+  border:1px solid rgba(110,145,136,.16);
+  background:rgba(5,12,11,.72);
+  color:#dce8e3;
+  border-radius:16px;
+  padding:16px 18px;
+  cursor:pointer;
+  transition:.18s ease;
+}
+
+.prompt-option:hover{
+  border-color:rgba(100,240,180,.35);
+  background:rgba(50,170,125,.07);
+  transform:translateX(3px);
+}
+
+.prompt-option span{
+  display:block;
+  color:#6f8880;
+  font-size:10px;
+  margin-top:5px;
+}
+
+/* ===== VOICE STATE ===== */
+
+.voice-active{
+  border-color:rgba(255,160,110,.55)!important;
+  box-shadow:0 0 0 4px rgba(255,160,110,.07);
+}
+
+.voice-listening{
+  position:fixed;
+  left:50%;
+  bottom:34px;
+  transform:translateX(-50%);
+  z-index:10000;
+  width:min(440px,calc(100vw - 36px));
+  padding:18px 20px;
+  border:1px solid rgba(105,240,185,.3);
+  border-radius:18px;
+  background:rgba(8,18,16,.96);
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+  display:none;
+}
+
+.voice-listening.show{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.voice-dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#63efb4;
+  box-shadow:0 0 0 7px rgba(99,239,180,.1);
+  animation:voicePulse 1s infinite;
+}
+
+@keyframes voicePulse{
+  0%,100%{transform:scale(.9);opacity:.7}
+  50%{transform:scale(1.15);opacity:1}
+}
+
+.voice-copy strong{
+  display:block;
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.voice-copy span{
+  color:#728983;
+  font-size:10px;
+}
+
+
+.radar-pulse{
+  animation:radarResultPulse .65s ease;
+}
+
+@keyframes radarResultPulse{
+  0%{transform:translateY(5px);opacity:.65}
+  100%{transform:translateY(0);opacity:1}
+}
+
 </style>
 </head>
 
@@ -674,10 +1371,12 @@ footer button{margin-top:10px}
   <div class="logo">Journal</div>
 
   <nav class="nav">
-    <button class="active" data-section="write">Write</button>
+    <button class="active" data-section="write">Home</button>
+    <button data-section="write">Write</button>
     <button data-section="patterns">Pattern Radar</button>
     <button data-section="history">Timeline</button>
     <button data-section="privacy">Privacy</button>
+    <button data-section="settings">Settings</button>
   </nav>
 
   <div class="side-bottom">
@@ -715,10 +1414,12 @@ footer button{margin-top:10px}
     <div class="hero">
       <div>
         <div class="eyebrow">YOUR PRIVATE THINKING SPACE</div>
-        <h1>What's taking up<br><em>space in your mind?</em></h1>
-        <p>Write freely. Gemini will listen, reflect, and help you notice what matters.</p>
+        <h1>Good evening, Naman 👋</h1>
+        <p>A clearer mind builds a brighter tomorrow.</p>
       </div>
       <div class="date" id="today"></div>
+      <div class="hero-quote">✦ “A journal today, a better you tomorrow.”</div>
+      <div class="hero-motto">Progress<br>over Perfection ♡</div>
     </div>
 
     <div class="stats">
@@ -824,22 +1525,162 @@ footer button{margin-top:10px}
       </div>
     </div>
 
-    <div class="guard" id="privacy">
-      <div class="guard-head">
-        <div class="guard-title">Privacy Shield</div>
-        <span class="shield">PROTECTED</span>
+    <section class="extra-features" id="extras">
+      <div class="extra-head">
+        <div>
+          <span class="extra-title">More ways to reflect</span>
+          <span class="extra-sub">Tools to go deeper, gain clarity, and grow.</span>
+        </div>
+        <span class="ai-badge">EXPLORE ALL ↗</span>
       </div>
-      <div class="guard-desc">
-        Add names you never want Gemini to receive. Emails, phone numbers,
-        IDs, cards and money amounts are detected automatically.
+
+      <div class="extra-grid">
+        <div class="extra-card" id="guided-prompts-card" onclick="openGuidedPrompts()">
+          <div class="extra-icon">✦</div>
+          <strong>Guided Prompts</strong>
+          <span>Thoughtful prompts for deeper self-awareness.</span>
+          <small>Explore prompts ↗</small>
+        </div>
+
+        <div class="extra-card" id="voice-journal-card" onclick="startVoiceJournal()">
+          <div class="extra-icon">♩</div>
+          <strong>Voice Journal</strong>
+          <span>Speak your thoughts and turn them into reflections.</span>
+          <small>Start speaking ↗</small>
+        </div>
+
+        <div class="extra-card" id="pattern-radar-card" onclick="runPatternRadarFromCard()">
+          <div class="extra-icon">▥</div>
+          <strong>Pattern Radar</strong>
+          <span>Discover recurring themes and insights over time.</span>
+          <small>Analyze patterns ↗</small>
+        </div>
+
+        <div class="extra-card" id="privacy-shield-card" onclick="openPrivacyCenter()">
+          <div class="extra-icon">♢</div>
+          <strong>Privacy Shield</strong>
+          <span>Redact sensitive details automatically before Gemini sees them.</span>
+          <small>Review protection ↗</small>
+        </div>
       </div>
-      <div class="guard-row">
-        <input id="names" placeholder="e.g. Priya, Rahul, Meerut Foods" autocomplete="off">
-        <button class="quiet" id="save-names">Save protection</button>
-      </div>
+    </section>
+
+    
+<section class="privacy-center card" id="privacy">
+  <div class="section-kicker">PRIVATE BY DESIGN</div>
+
+  <div class="privacy-head">
+    <div>
+      <h2>Privacy Center</h2>
+      <p>Your journal stays yours. Review how Privacy Shield protects your reflections before Gemini receives them.</p>
+    </div>
+    <span class="status-pill">● PROTECTED</span>
+  </div>
+
+  <div class="privacy-grid">
+    <div class="privacy-feature">
+      <div class="privacy-feature-icon">◇</div>
+      <h3>Privacy Shield</h3>
+      <p>Sensitive personal details are detected and redacted before your reflection is sent to Gemini.</p>
+      <span class="privacy-live">Protection active</span>
     </div>
 
-    <div id="history">
+    <div class="privacy-feature">
+      <div class="privacy-feature-icon">✓</div>
+      <h3>Protected processing</h3>
+      <p>Your protected view shows what the AI receives, keeping the original journal text separate.</p>
+      <span class="privacy-live">Protected view enabled</span>
+    </div>
+
+    <div class="privacy-feature">
+      <div class="privacy-feature-icon">⌁</div>
+      <h3>Personal protection list</h3>
+      <p>Add names or private terms that you never want Gemini to receive.</p>
+      <span class="privacy-live">Customizable</span>
+    </div>
+  </div>
+
+  <div class="privacy-controls">
+    <div>
+      <strong>Protected names &amp; details</strong>
+      <span>Add names you never want Gemini to receive.</span>
+    </div>
+
+    <div class="privacy-input-row">
+      <input id="privacy-name-input" placeholder="e.g. Priya, Rahul, Meerut Foods">
+      <button id="privacy-save-btn">Save protection</button>
+    </div>
+  </div>
+
+  <div class="privacy-note">
+    <span>✦</span>
+    Privacy Shield is designed to minimize sensitive information before AI reflection.
+  </div>
+</section>
+
+
+    
+<section class="settings-panel card" id="settings">
+  <div class="section-kicker">YOUR JOURNAL</div>
+
+  <div class="settings-head">
+    <div>
+      <h2>Settings</h2>
+      <p>Manage your journal experience and see how your private AI companion is configured.</p>
+    </div>
+    <span class="status-pill">● JOURNAL ACTIVE</span>
+  </div>
+
+  <div class="settings-list">
+
+    <div class="setting-row">
+      <div class="setting-icon">N</div>
+      <div class="setting-copy">
+        <strong>Account</strong>
+        <span id="settings-email">Signed in with your Google account</span>
+      </div>
+      <span class="setting-value">CONNECTED</span>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-icon">✦</div>
+      <div class="setting-copy">
+        <strong>Gemini reflection</strong>
+        <span>Your thinking partner analyzes protected reflections and returns a private reflection.</span>
+      </div>
+      <span class="setting-value">ACTIVE</span>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-icon">◇</div>
+      <div class="setting-copy">
+        <strong>Privacy Shield</strong>
+        <span>Personal details are redacted before Gemini sees your words.</span>
+      </div>
+      <span class="setting-value">PROTECTED</span>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-icon">∞</div>
+      <div class="setting-copy">
+        <strong>Journal history</strong>
+        <span>Your reflections remain available in your private timeline.</span>
+      </div>
+      <span class="setting-value">PRIVATE</span>
+    </div>
+
+  </div>
+
+  <div class="settings-about">
+    <div>
+      <strong>Gemini Journal</strong>
+      <span>A private space to write, reflect, and discover patterns over time.</span>
+    </div>
+    <span class="version-chip">AI JOURNAL</span>
+  </div>
+</section>
+
+<div id="history">
       <div class="section-title">
         <h2>Your timeline</h2>
         <span>Private · only visible to you</span>
@@ -870,6 +1711,9 @@ document.querySelectorAll(".nav button").forEach(btn=>{
   });
 });
 </script>
+
+
+
 <script type="module">
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -885,9 +1729,12 @@ let timer;
 const TOKEN=/\[([A-Z]+)_(\d+)\]/g;
 let seen=new Set();
 
-$("today").textContent=new Date().toLocaleDateString(undefined,{
- weekday:"long",month:"short",day:"numeric"
-});
+const todayEl=$("today");
+if(todayEl){
+  todayEl.textContent=new Date().toLocaleDateString(undefined,{
+    weekday:"long",month:"short",day:"numeric"
+  });
+}
 
 const cfg=await (await fetch("/api/config")).json();
 
@@ -1123,13 +1970,24 @@ function renderRedacted(text,summary){
 }
 
 async function loadNames(){
- const {names}=await api("/api/protected-names");
- $("names").value=(names||[]).join(", ");
+ try{
+   const {names}=await api("/api/protected-names");
+   const input=$("names");
+   if(input) input.value=(names||[]).join(", ");
+ }catch(e){
+   console.error("Protected names load failed:",e);
+ }
 }
 
-$("save-names").onclick=async()=>{
+const saveNamesButton=$("save-names");
+
+if(saveNamesButton){
+ saveNamesButton.onclick=async()=>{
  try{
-   const names=$("names").value.split(",")
+   const input=$("names");
+   if(!input) return;
+
+   const names=input.value.split(",")
     .map(s=>s.trim()).filter(Boolean);
 
    await api("/api/protected-names",{
@@ -1137,7 +1995,7 @@ $("save-names").onclick=async()=>{
      body:JSON.stringify({names})
    });
 
-   $("save-names").textContent="Protected ✓";
+   saveNamesButton.textContent="Protected ✓";
 
    setTimeout(()=>{
      $("save-names").textContent="Save protection";
@@ -1150,7 +2008,8 @@ $("save-names").onclick=async()=>{
 
    paint(r.redacted,r.summary);
  }catch(e){notify(e.message)}
-};
+ };
+}
 
 /* PATTERN RADAR */
 $("radar-btn").onclick=async()=>{
@@ -1160,11 +2019,16 @@ $("radar-btn").onclick=async()=>{
  btn.disabled=true;
  btn.textContent="Finding patterns…";
 
- radar.innerHTML=`
- <div class="radar-empty">
-   <div class="orb"></div>
-   Gemini is looking across your reflections…
- </div>`;
+ if(radar){
+   radar.innerHTML=`
+   <div class="radar-empty">
+     <div class="orb"></div>
+     <strong>Gemini is reading your journal…</strong>
+     <div style="margin-top:7px;color:#647b74">
+       Looking across your saved reflections for recurring themes.
+     </div>
+   </div>`;
+ }
 
  try{
    const result=await api("/api/pattern-radar",{
@@ -1173,46 +2037,124 @@ $("radar-btn").onclick=async()=>{
    });
 
    renderPatterns(result);
+
+   btn.disabled=false;
    btn.textContent="Refresh pattern radar";
+
+   /*
+     Make the successful AI result impossible to miss.
+   */
+   if(radar){
+     radar.classList.remove("radar-pulse");
+     void radar.offsetWidth;
+     radar.classList.add("radar-pulse");
+   }
+
  }catch(e){
-   radar.innerHTML=`
-   <div class="radar-empty">
-     Pattern Radar needs a few saved reflections before it can surface meaningful patterns.
-   </div>`;
+   console.error("Pattern Radar error:",e);
+
+   if(radar){
+     radar.innerHTML=`
+     <div class="radar-empty" style="text-align:left">
+       <strong style="color:#ffb0b0">
+         Pattern Radar couldn't complete the analysis.
+       </strong>
+
+       <div style="margin-top:9px;color:#9aaaa5">
+         ${escape(e.message || "Unknown error")}
+       </div>
+
+       <div style="margin-top:12px;color:#687d77;font-size:10px">
+         Save a few reflections first, then try again.
+       </div>
+     </div>`;
+   }
+
+   notify(
+     "Pattern Radar: " +
+     (e.message || "The AI analysis could not be completed.")
+   );
+
+   btn.disabled=false;
    btn.textContent="Analyze my patterns ↗";
  }
-
- btn.disabled=false;
-};
+};;
 
 function renderPatterns(result){
  const radar=$("radar");
 
- let patterns=result.patterns||result.insights||[];
+ if(!radar) return;
 
- if(typeof result==="string")patterns=[result];
-
- if(!patterns.length && result.analysis){
+ /*
+   Pattern Radar backend returns a structured object:
+   { themes: [], loops: [], shift: "", question: "" }
+ */
+ if(result && result.ready===false){
    radar.innerHTML=`
-    <div class="pattern">
-      <strong>Your journal signal</strong>
-      <p>${escape(result.analysis)}</p>
+    <div class="radar-empty">
+      <div class="orb"></div>
+      ${escape(result.message || "Write a few reflections first.")}
     </div>`;
    return;
  }
 
- radar.innerHTML=patterns.slice(0,4).map((p,i)=>{
-   if(typeof p==="string"){
-     return `<div class="pattern">
-       <strong>${String(i+1).padStart(2,"0")} · ${escape(p)}</strong>
-     </div>`;
-   }
+ const data=result && result.patterns ? result.patterns : result;
 
-   return `<div class="pattern">
-     <strong>${escape(p.title||p.name||"Emerging pattern")}</strong>
-     <p>${escape(p.description||p.summary||p.insight||"A recurring theme in your reflections.")}</p>
-   </div>`;
- }).join("");
+ if(!data || typeof data!=="object"){
+   radar.innerHTML=`
+    <div class="radar-empty">
+      Pattern Radar returned no usable insights.
+    </div>`;
+   return;
+ }
+
+ const themes=Array.isArray(data.themes) ? data.themes : [];
+ const loops=Array.isArray(data.loops) ? data.loops : [];
+
+ let html="";
+
+ themes.slice(0,4).forEach((p,i)=>{
+   html+=`
+    <div class="pattern">
+      <strong>${String(i+1).padStart(2,"0")} · ${escape(p.name||"Emerging theme")}</strong>
+      <p>${escape(p.summary||"A recurring theme in your reflections.")}</p>
+      ${p.frequency ? `<small>Appears in ${p.frequency} reflection${p.frequency===1?"":"s"}</small>` : ""}
+    </div>`;
+ });
+
+ loops.slice(0,3).forEach((p,i)=>{
+   html+=`
+    <div class="pattern">
+      <strong>Loop · ${escape(p.name||"Unresolved pattern")}</strong>
+      <p>${escape(p.summary||"A pattern worth noticing.")}</p>
+    </div>`;
+ });
+
+ if(data.shift){
+   html+=`
+    <div class="pattern">
+      <strong>Shift over time</strong>
+      <p>${escape(data.shift)}</p>
+    </div>`;
+ }
+
+ if(data.question){
+   html+=`
+    <div class="pattern">
+      <strong>A question to carry forward</strong>
+      <p>${escape(data.question)}</p>
+    </div>`;
+ }
+
+ if(!html){
+   html=`
+    <div class="radar-empty">
+      <div class="orb"></div>
+      Your journal does not have enough signal for a clear pattern yet.
+    </div>`;
+ }
+
+ radar.innerHTML=html;
 }
 
 /* NAV */
@@ -1255,5 +2197,326 @@ const syncJournalCount=()=>{
 };
 setInterval(syncJournalCount,500);
 </script>
+
+<!-- GUIDED PROMPTS -->
+<div class="prompt-overlay" id="prompt-overlay">
+  <div class="prompt-modal">
+    <div class="prompt-modal-head">
+      <div>
+        <h2>What would you like to explore?</h2>
+        <p>Choose a prompt and Gemini will help you reflect on it.</p>
+      </div>
+      <button class="prompt-close" onclick="closeGuidedPrompts()">×</button>
+    </div>
+
+    <div class="prompt-list">
+      <button class="prompt-option" onclick="choosePrompt('What has been taking up most of my mental space lately?')">
+        What has been taking up most of my mental space lately?
+        <span>Notice what deserves your attention.</span>
+      </button>
+
+      <button class="prompt-option" onclick="choosePrompt('What gave me energy today, and what drained it?')">
+        What gave me energy today, and what drained it?
+        <span>Understand your emotional patterns.</span>
+      </button>
+
+      <button class="prompt-option" onclick="choosePrompt('Is there something I am avoiding that I should face?')">
+        Is there something I am avoiding that I should face?
+        <span>Make space for honest reflection.</span>
+      </button>
+
+      <button class="prompt-option" onclick="choosePrompt('What is one thing I want to change or improve tomorrow?')">
+        What is one thing I want to change or improve tomorrow?
+        <span>Turn reflection into a small next step.</span>
+      </button>
+
+      <button class="prompt-option" onclick="choosePrompt('What am I grateful for right now?')">
+        What am I grateful for right now?
+        <span>Capture something worth remembering.</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="voice-listening" id="voice-listening">
+  <div class="voice-dot"></div>
+  <div class="voice-copy">
+    <strong>Listening…</strong>
+    <span>Speak naturally. Your words will appear in your journal.</span>
+  </div>
+</div>
+
+
+<script>
+/* =========================================================
+   INTERACTIVE REFLECTION FEATURES
+   ========================================================= */
+
+function openGuidedPrompts(){
+  const overlay=document.getElementById("prompt-overlay");
+  if(overlay) overlay.classList.add("show");
+}
+
+function closeGuidedPrompts(){
+  const overlay=document.getElementById("prompt-overlay");
+  if(overlay) overlay.classList.remove("show");
+}
+
+function choosePrompt(text){
+  closeGuidedPrompts();
+
+  const entry=document.getElementById("entry");
+  if(!entry) return;
+
+  entry.value=text;
+  entry.dispatchEvent(new Event("input",{bubbles:true}));
+
+  const write=document.getElementById("write");
+  if(write){
+    write.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  }
+
+  setTimeout(()=>{
+    entry.focus();
+    entry.setSelectionRange(entry.value.length,entry.value.length);
+  },500);
+}
+
+function openPrivacyCenter(){
+  const privacy=document.getElementById("privacy");
+
+  if(privacy){
+    privacy.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  }
+
+  document.querySelectorAll(".nav button").forEach(b=>{
+    if(b.dataset.section==="privacy") b.classList.add("active");
+    else b.classList.remove("active");
+  });
+}
+
+function runPatternRadarFromCard(){
+  const radar=document.getElementById("patterns");
+
+  if(radar){
+    radar.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  }
+
+  setTimeout(()=>{
+    const button=document.getElementById("radar-btn");
+
+    if(button && !button.disabled){
+      button.click();
+    }
+  },650);
+}
+
+let activeVoiceRecognition = null;
+let voiceSilenceTimer = null;
+let voiceSessionId = 0;
+
+function stopVoiceJournal(){
+  voiceSessionId++;
+
+  if(voiceSilenceTimer){
+    clearTimeout(voiceSilenceTimer);
+    voiceSilenceTimer=null;
+  }
+
+  if(activeVoiceRecognition){
+    try{
+      activeVoiceRecognition.stop();
+    }catch(e){}
+
+    activeVoiceRecognition=null;
+  }
+
+  const card=document.getElementById("voice-journal-card");
+  const indicator=document.getElementById("voice-listening");
+
+  if(card) card.classList.remove("voice-active");
+  if(indicator) indicator.classList.remove("show");
+}
+
+function startVoiceJournal(){
+  /* If already listening, clicking again means STOP. */
+  if(activeVoiceRecognition){
+    stopVoiceJournal();
+    return;
+  }
+
+  const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+  if(!SpeechRecognition){
+    alert(
+      "Voice Journal needs browser speech recognition. " +
+      "Please use the latest Google Chrome or Microsoft Edge."
+    );
+    return;
+  }
+
+  const entry=document.getElementById("entry");
+  const card=document.getElementById("voice-journal-card");
+  const indicator=document.getElementById("voice-listening");
+
+  if(!entry) return;
+
+  const recognition=new SpeechRecognition();
+  activeVoiceRecognition=recognition;
+
+  const session=++voiceSessionId;
+
+  recognition.lang="en-IN";
+  recognition.continuous=true;
+  recognition.interimResults=true;
+
+  let finalText="";
+  let hadSpeech=false;
+
+  function resetSilenceTimer(){
+    if(voiceSilenceTimer){
+      clearTimeout(voiceSilenceTimer);
+    }
+
+    /*
+      Stop after 3 seconds of silence.
+      This prevents the microphone from remaining active
+      indefinitely after the user finishes speaking.
+    */
+    voiceSilenceTimer=setTimeout(()=>{
+      if(session===voiceSessionId){
+        stopVoiceJournal();
+      }
+    },3000);
+  }
+
+  recognition.onstart=()=>{
+    if(session!==voiceSessionId) return;
+
+    if(card) card.classList.add("voice-active");
+    if(indicator) indicator.classList.add("show");
+
+    entry.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+    setTimeout(()=>entry.focus(),450);
+
+    resetSilenceTimer();
+  };
+
+  recognition.onresult=(event)=>{
+    if(session!==voiceSessionId) return;
+
+    hadSpeech=true;
+    resetSilenceTimer();
+
+    let interim="";
+
+    for(let i=event.resultIndex;i<event.results.length;i++){
+      const transcript=event.results[i][0].transcript;
+
+      if(event.results[i].isFinal){
+        finalText += transcript + " ";
+      }else{
+        interim += transcript;
+      }
+    }
+
+    entry.value=(finalText + interim).trim();
+    entry.dispatchEvent(new Event("input",{bubbles:true}));
+
+    /* Give the user another 3 seconds after speech ends. */
+    resetSilenceTimer();
+  };
+
+  recognition.onerror=(event)=>{
+    if(session!==voiceSessionId) return;
+
+    if(event.error==="not-allowed"){
+      alert(
+        "Microphone permission was blocked. " +
+        "Please allow microphone access and try again."
+      );
+    }
+
+    if(event.error!=="aborted"){
+      stopVoiceJournal();
+    }
+  };
+
+  recognition.onend=()=>{
+    if(session===voiceSessionId){
+      activeVoiceRecognition=null;
+
+      if(voiceSilenceTimer){
+        clearTimeout(voiceSilenceTimer);
+        voiceSilenceTimer=null;
+      }
+
+      if(card) card.classList.remove("voice-active");
+      if(indicator) indicator.classList.remove("show");
+    }
+  };
+
+  try{
+    recognition.start();
+  }catch(e){
+    activeVoiceRecognition=null;
+
+    if(card) card.classList.remove("voice-active");
+    if(indicator) indicator.classList.remove("show");
+
+    alert("Voice Journal could not start: "+e.message);
+  }
+}
+
+/* Close prompt modal by clicking outside it */
+document.addEventListener("click",function(e){
+  const overlay=document.getElementById("prompt-overlay");
+
+  if(overlay && e.target===overlay){
+    closeGuidedPrompts();
+  }
+});
+
+
+
+/* Stop microphone whenever the user leaves the reflection context. */
+document.querySelectorAll(".nav button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    if(typeof stopVoiceJournal==="function"){
+      stopVoiceJournal();
+    }
+  });
+});
+
+/* Stop microphone if the page becomes hidden/backgrounded. */
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden && typeof stopVoiceJournal==="function"){
+    stopVoiceJournal();
+  }
+});
+
+/* Escape also stops voice and closes any prompt UI. */
+document.addEventListener("keydown",(e)=>{
+  if(e.key==="Escape" && typeof stopVoiceJournal==="function"){
+    stopVoiceJournal();
+  }
+});
+</script>
+
 </body>
 </html>
