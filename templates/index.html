@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Journal — Your private thinking space</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+
+<style>
+:root{
+  --bg:#050807;
+  --panel:#0b100f;
+  --panel2:#0e1513;
+  --line:rgba(190,255,226,.10);
+  --line2:rgba(190,255,226,.18);
+  --text:#f4f8f5;
+  --muted:#84928c;
+  --muted2:#aebbb5;
+  --accent:#78f5bd;
+  --accent2:#a98cff;
+  --blue:#64b8ff;
+  --pink:#ff72a7;
+  --gold:#ffc85c;
+  --danger:#ff6d7d;
+  --shadow:0 25px 80px rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(900px 500px at 75% -5%,rgba(75,140,115,.16),transparent 65%),
+    radial-gradient(700px 500px at 20% 20%,rgba(75,55,130,.10),transparent 65%),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+/* AUTH */
+#gate{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(100,220,170,.13),transparent 35%),
+    #050807;
+}
+.gate-inner{
+  width:min(620px,92vw);
+  padding:55px;
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:rgba(10,15,13,.78);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(24px);
+}
+.gate-logo,.logo{
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+.gate-logo{margin-bottom:55px}
+.gate-logo:before,.logo:before{content:"✦";color:var(--accent);margin-right:8px}
+.eyebrow{
+  color:var(--accent);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.gate-inner h1{
+  margin:16px 0;
+  font-size:58px;
+  line-height:1.02;
+  letter-spacing:-3px;
+}
+em{
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+  color:#b8c5be;
+}
+.gate-inner>p{color:var(--muted2);line-height:1.7;max-width:540px}
+.demo{
+  margin:30px 0;
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(255,255,255,.025);
+}
+.demo-label{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.demo-text{font-family:Georgia,serif;color:#ccd5d0;line-height:1.7}
+.bar{
+  display:inline-block;
+  padding:2px 7px;
+  border-radius:5px;
+  background:rgba(120,245,189,.13);
+  color:var(--accent);
+}
+
+/* SHELL */
+.shell{min-height:100vh}
+.sidebar{
+  position:fixed;
+  inset:0 auto 0 0;
+  width:238px;
+  padding:30px 18px;
+  border-right:1px solid var(--line);
+  background:rgba(4,7,6,.82);
+  backdrop-filter:blur(22px);
+  z-index:20;
+}
+.logo{padding:4px 10px 42px}
+.logo span{font-weight:500}
+.nav{display:grid;gap:7px}
+.nav button{
+  border:0;
+  background:transparent;
+  color:#87938e;
+  text-align:left;
+  padding:14px 16px;
+  border-radius:13px;
+  font-size:14px;
+  transition:.2s;
+}
+.nav button:before{content:"•";color:#5d6964;margin-right:13px}
+.nav button:hover{
+  color:#fff;
+  background:rgba(255,255,255,.045);
+}
+.nav button.active{
+  color:#fff;
+  background:linear-gradient(90deg,rgba(120,245,189,.14),rgba(120,245,189,.04));
+  box-shadow:inset 2px 0 var(--accent);
+}
+.nav button.active:before{color:var(--accent)}
+
+.side-bottom{
+  position:absolute;
+  left:18px;right:18px;bottom:25px;
+}
+.privacy-mini{
+  padding:17px;
+  border:1px solid var(--line2);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(120,245,189,.07),rgba(255,255,255,.02));
+}
+.privacy-mini strong{font-size:12px}
+.privacy-mini p{font-size:10px;line-height:1.6;color:#68736f;margin:10px 0 0}
+.dot{
+  display:inline-block;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 12px var(--accent);
+  margin-right:8px;
+}
+
+.main{margin-left:238px;min-height:100vh}
+.topbar{
+  height:70px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding:0 38px;
+  background:rgba(4,7,6,.42);
+  backdrop-filter:blur(16px);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+.user{display:flex;align-items:center;gap:12px;color:#9da9a4;font-size:12px}
+.avatar{
+  width:34px;height:34px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:linear-gradient(135deg,#17372b,#15231f);
+  border:1px solid var(--line2);
+  color:var(--accent);
+  font-weight:800;
+}
+.signout{
+  margin-left:15px;
+  border:1px solid var(--line2);
+  background:transparent;
+  color:#9ca8a3;
+  padding:9px 14px;
+  border-radius:10px;
+}
+
+.content{
+  width:min(1260px,calc(100% - 70px));
+  margin:auto;
+  padding:55px 0 70px;
+  position:relative;
+}
+
+/* HERO */
+.hero{
+  min-height:210px;
+  padding:8px 0 28px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  position:relative;
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  right:-8%;
+  top:-75px;
+  width:650px;
+  height:260px;
+  background:
+    radial-gradient(ellipse at 65% 55%,rgba(95,190,150,.20),transparent 45%),
+    radial-gradient(ellipse at 35% 70%,rgba(120,80,210,.15),transparent 50%);
+  filter:blur(35px);
+  pointer-events:none;
+}
+.hero h1{
+  position:relative;
+  z-index:1;
+  font-size:58px;
+  line-height:1.02;
+  letter-spacing:-3px;
+  margin:13px 0 12px;
+}
+.hero p{color:#7e8b85;margin:0;font-size:14px}
+.date{
+  border:1px solid var(--line);
+  color:#8e9a95;
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:11px;
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin:5px 0 24px;
+}
+.stat{
+  min-height:108px;
+  padding:18px;
+  border:1px solid var(--line2);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+  position:relative;
+  overflow:hidden;
+}
+.stat:after{
+  content:"";
+  position:absolute;
+  width:80px;height:80px;
+  right:-25px;bottom:-35px;
+  border-radius:50%;
+  background:rgba(120,245,189,.07);
+  filter:blur(8px);
+}
+.stat-icon{font-size:20px;margin-bottom:10px}
+.stat-value{font-size:25px;font-weight:800;letter-spacing:-1px}
+.stat-label{font-size:11px;color:#8c9893;margin-top:3px}
+.stat-meta{font-size:10px;color:var(--accent);margin-top:8px}
+
+/* MAIN GRID */
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.72fr) minmax(280px,.72fr);
+  gap:18px;
+  align-items:start;
+}
+
+/* COMPOSER */
+.composer-card{
+  border:1px solid var(--line2);
+  border-radius:22px;
+  background:linear-gradient(145deg,rgba(17,26,23,.92),rgba(7,11,10,.94));
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.composer-top{
+  height:58px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+}
+.label{
+  color:#71807a;
+  font-size:10px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+}
+.shield{
+  color:var(--accent);
+  font-size:10px;
+  font-weight:700;
+}
+.shield:before{content:"● ";text-shadow:0 0 10px var(--accent)}
+.composer-body{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:285px;
+}
+.write-pane,.mirror-pane{padding:23px}
+.write-pane{border-right:1px solid var(--line)}
+textarea{
+  width:100%;
+  height:220px;
+  resize:none;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#f0f4f2;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:20px;
+  line-height:1.65;
+}
+textarea::placeholder{color:#4e5a55}
+.mirror{
+  color:#aebbb5;
+  font-family:Georgia,serif;
+  font-size:16px;
+  line-height:1.65;
+  white-space:pre-wrap;
+}
+.mirror.empty{color:#49544f;font-family:Inter;font-size:12px}
+.composer-bottom{
+  min-height:70px;
+  padding:13px 18px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.status{font-size:10px;color:#66736d}
+.primary{
+  border:0;
+  border-radius:12px;
+  padding:14px 22px;
+  background:linear-gradient(135deg,#8dffd0,#63eeb4);
+  color:#03110b;
+  font-weight:800;
+  box-shadow:0 8px 30px rgba(100,240,180,.15);
+  transition:.2s;
+}
+.primary:hover{transform:translateY(-1px);box-shadow:0 12px 35px rgba(100,240,180,.27)}
+.primary:disabled{opacity:.55;transform:none}
+
+/* RIGHT COLUMN */
+.right-stack{display:grid;gap:14px}
+.card,.insight-card,.guard{
+  border:1px solid var(--line2);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(17,23,21,.92),rgba(8,12,11,.94));
+  overflow:hidden;
+}
+.insight-card{
+  padding:22px;
+  min-height:215px;
+  background:
+    radial-gradient(circle at 85% 20%,rgba(169,140,255,.20),transparent 40%),
+    linear-gradient(145deg,rgba(39,29,72,.72),rgba(9,12,18,.96));
+}
+.insight-title{font-weight:800;font-size:16px}
+.insight-title span{color:#e7d8ff;margin-right:8px}
+.insight-copy{
+  font-family:Georgia,serif;
+  color:#d8dbe7;
+  font-size:17px;
+  line-height:1.55;
+  margin-top:25px;
+}
+.insight-source{font-size:10px;color:#958da9;margin-top:17px}
+
+.mind-card{padding:20px}
+.card-title{font-weight:800;font-size:14px}
+.card-sub{font-size:10px;color:#697570;margin-top:4px}
+.mind-ring{
+  width:120px;height:120px;
+  border-radius:50%;
+  margin:22px auto 15px;
+  display:grid;
+  place-items:center;
+  background:conic-gradient(var(--accent2),var(--blue),var(--accent),var(--gold),var(--accent2));
+  position:relative;
+}
+.mind-ring:after{
+  content:"";
+  position:absolute;
+  inset:9px;
+  border-radius:50%;
+  background:#0b100f;
+}
+.ring-inner{position:relative;z-index:1;text-align:center}
+.ring-number{font-size:25px;font-weight:800}
+.ring-label{font-size:9px;color:#75817c}
+.mind-caption{text-align:center;font-size:10px;color:#718079}
+
+/* PATTERN RADAR */
+.radar-card{
+  margin-top:18px;
+  padding:0;
+}
+.card-head{
+  padding:19px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+}
+.card-head-left{display:flex;gap:10px;align-items:center}
+.spark{font-size:18px}
+.ai-badge{
+  color:var(--accent);
+  font-size:9px;
+  letter-spacing:1.7px;
+  font-weight:800;
+}
+.radar{
+  min-height:205px;
+  padding:20px;
+}
+.radar-empty{
+  height:160px;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:14px;
+  color:#66736e;
+  font-size:11px;
+}
+.orb{
+  width:70px;height:70px;border-radius:50%;
+  background:
+    radial-gradient(circle,#d6fff0 0 5%,#74efba 8%,#6e64ff 35%,transparent 70%);
+  box-shadow:0 0 45px rgba(120,245,189,.22);
+}
+.quiet{
+  border:1px solid var(--line2);
+  background:rgba(255,255,255,.025);
+  color:#aab6b1;
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:11px;
+}
+.quiet:hover{background:rgba(255,255,255,.06);color:#fff}
+
+/* PRIVACY */
+.guard{margin-top:18px;padding:20px}
+.guard-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.guard-title{font-weight:800;font-size:14px}
+.guard-desc{font-size:10px;color:#75817c;line-height:1.6;margin:10px 0 16px}
+.guard-row{display:flex;gap:10px}
+.guard input{
+  flex:1;
+  min-width:0;
+  border:1px solid var(--line);
+  background:#070b0a;
+  color:#dce6e1;
+  outline:0;
+  padding:12px 13px;
+  border-radius:10px;
+}
+.guard input:focus{border-color:rgba(120,245,189,.45)}
+
+/* TIMELINE */
+#history{margin-top:42px}
+.section-title{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+.section-title h2{font-size:21px;margin:0;letter-spacing:-.6px}
+.section-title span{font-size:10px;color:#66726d}
+.entry{
+  margin:10px 0;
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:rgba(12,17,15,.72);
+}
+.stamp{font-size:9px;color:#58635e;text-transform:uppercase;letter-spacing:1px}
+.said{
+  font-family:Georgia,serif;
+  font-size:18px;
+  margin:13px 0;
+  color:#e7ede9;
+}
+.back{
+  border-left:2px solid var(--accent);
+  padding:14px 17px;
+  border-radius:0 10px 10px 0;
+  background:rgba(120,245,189,.035);
+  color:#b5c2bc;
+  font-family:Georgia,serif;
+  line-height:1.7;
+  font-size:14px;
+}
+.receipt-toggle{
+  margin-top:12px;
+  border:0;
+  padding:0;
+  background:none;
+  color:#6ce7b0;
+  font-size:10px;
+}
+.receipt{margin-top:13px;padding:14px;border-top:1px solid var(--line)}
+.receipt dl{display:grid;grid-template-columns:150px 1fr;gap:8px;font-size:10px}
+.receipt dt{color:#59655f}
+.receipt dd{margin:0;color:#aebbb5}
+.seen{margin-top:12px;padding:12px;background:#070b0a;border-radius:10px;color:#89968f;font-size:11px;line-height:1.6}
+
+footer{
+  margin-top:45px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  color:#4e5954;
+  font-size:10px;
+}
+footer button{margin-top:10px}
+#isolation-result{margin-top:8px}
+.pass{color:var(--accent)}
+.fail{color:var(--danger)}
+#notice{
+  padding:12px 15px;
+  border:1px solid rgba(255,100,120,.25);
+  border-radius:12px;
+  color:#ff9aa7;
+  background:rgba(255,70,90,.08);
+  margin-bottom:15px;
+}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .dashboard-grid{grid-template-columns:1fr}
+  .right-stack{grid-template-columns:1fr 1fr}
+}
+@media(max-width:850px){
+  .sidebar{width:70px;padding:22px 8px}
+  .logo{font-size:0;text-align:center;padding:5px 0 35px}
+  .logo:before{font-size:21px;margin:0}
+  .nav button{font-size:0;text-align:center;padding:13px 0}
+  .nav button:before{margin:0!important;font-size:16px}
+  .side-bottom{display:none}
+  .main{margin-left:70px}
+  .content{width:calc(100% - 36px);padding:35px 0}
+  .hero h1{font-size:42px}
+  .right-stack{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .topbar{padding:0 15px}
+  .user span{display:none}
+  .stats{grid-template-columns:1fr 1fr}
+  .composer-body{grid-template-columns:1fr}
+  .write-pane{border-right:0;border-bottom:1px solid var(--line)}
+  .hero{min-height:auto;display:block}
+  .date{display:inline-block;margin-top:20px}
+  .hero h1{font-size:37px;letter-spacing:-2px}
+  .composer-bottom{align-items:stretch;flex-direction:column}
+  .primary{width:100%}
+  .guard-row{flex-direction:column}
+}
+
+.toast{
+  position:fixed;
+  right:28px;
+  bottom:28px;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  min-width:285px;
+  padding:15px 18px;
+  border:1px solid rgba(120,245,189,.28);
+  border-radius:15px;
+  background:rgba(9,16,13,.94);
+  backdrop-filter:blur(20px);
+  box-shadow:0 18px 55px rgba(0,0,0,.5),0 0 35px rgba(120,245,189,.08);
+  transform:translateY(20px);
+  opacity:0;
+  pointer-events:none;
+  transition:.28s ease;
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-icon{
+  width:30px;height:30px;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:rgba(120,245,189,.12);
+  color:var(--accent);
+  font-weight:800;
+  box-shadow:0 0 20px rgba(120,245,189,.15);
+}
+.toast-title{font-size:12px;font-weight:800;color:#eef8f3}
+.toast-sub{font-size:10px;color:#75827c;margin-top:3px}
+
+.signature{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-left:10px;
+  padding:5px 8px;
+  border-radius:999px;
+  color:#d9cbff;
+  background:rgba(169,140,255,.12);
+  border:1px solid rgba(169,140,255,.25);
+  font-size:8px;
+  letter-spacing:1.2px;
+  font-weight:800;
+  box-shadow:0 0 22px rgba(169,140,255,.08);
+}
+.signature:before{
+  content:"✦";
+  color:#c2a9ff;
+}
+.radar-card{
+  position:relative;
+  box-shadow:0 0 0 1px rgba(169,140,255,.04),0 20px 70px rgba(70,35,130,.10);
+}
+.radar-card:before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:2px;
+  background:linear-gradient(180deg,#b18cff,transparent);
+  box-shadow:0 0 18px rgba(169,140,255,.45);
+}
+@media(max-width:620px){
+ .toast{left:15px;right:15px;bottom:15px;min-width:0}
+}
+
+
+</head>
+
+
+<body>
+
+<section id="gate">
+  <div class="gate-inner">
+    <div class="gate-logo">Journal</div>
+    <div class="eyebrow">PRIVATE AI JOURNAL</div>
+    <h1>Think clearly.<br><em>Keep it yours.</em></h1>
+    <p>A private space to think out loud with Gemini — designed to reflect your thoughts without exposing the personal details inside them.</p>
+    <div class="demo">
+      <div class="demo-label">Privacy Shield · live redaction</div>
+      <div class="demo-text">Had a difficult call with <span class="bar">name</span> about the <span class="bar">money amount</span> invoice.</div>
+    </div>
+    <button class="primary" id="signin">Continue with Google&nbsp; →</button>
+    <p id="gate-error"></p>
+  </div>
+</section>
+
+<div id="app" class="shell hidden">
+
+<aside class="sidebar">
+  <div class="logo">Journal</div>
+
+  <nav class="nav">
+    <button class="active" data-section="write">Write</button>
+    <button data-section="patterns">Pattern Radar</button>
+    <button data-section="history">Timeline</button>
+    <button data-section="privacy">Privacy</button>
+  </nav>
+
+  <div class="side-bottom">
+    <div class="privacy-mini">
+      <div><span class="dot"></span><strong>Privacy Shield active</strong></div>
+      <p>Personal details are redacted before Gemini sees your words.</p>
+    </div>
+  </div>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+  <div class="user">
+    <div class="avatar" id="avatar">J</div>
+    <span id="user-email"></span>
+  </div>
+  <button class="signout hidden" id="signout">Sign out</button>
+</header>
+
+<div class="content">
+
+  <div id="notice" class="hidden"></div>
+  <div id="save-toast" class="toast">
+    <div class="toast-icon">✓</div>
+    <div>
+      <div class="toast-title">Reflection saved privately</div>
+      <div class="toast-sub">Protected by Privacy Shield · Gemini reflection complete</div>
+    </div>
+  </div>
+
+
+  <section id="write">
+
+    <div class="hero">
+      <div>
+        <div class="eyebrow">YOUR PRIVATE THINKING SPACE</div>
+        <h1>What's taking up<br><em>space in your mind?</em></h1>
+        <p>Write freely. Gemini will listen, reflect, and help you notice what matters.</p>
+      </div>
+      <div class="date" id="today"></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-icon">✎</div>
+        <div class="stat-value" id="entry-count">—</div>
+        <div class="stat-label">Reflections</div>
+        <div class="stat-meta">Private journal</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">✦</div>
+        <div class="stat-value">AI</div>
+        <div class="stat-label">Thinking partner</div>
+        <div class="stat-meta">Powered by Gemini</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">◉</div>
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Privacy Shield</div>
+        <div class="stat-meta">Protection active</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">◎</div>
+        <div class="stat-value">∞</div>
+        <div class="stat-label">Ideas & reflections</div>
+        <div class="stat-meta">Your space</div>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+
+      <div>
+        <div class="composer-card">
+          <div class="composer-top">
+            <span class="label">New reflection</span>
+            <span class="shield">Privacy Shield · On</span>
+          </div>
+
+          <div class="composer-body">
+            <div class="write-pane">
+              <div class="label" style="margin-bottom:13px">Your thoughts</div>
+              <textarea id="entry" placeholder="What's on your mind today?&#10;&#10;Write freely. Your thoughts are yours."></textarea>
+            </div>
+
+            <div class="mirror-pane">
+              <div class="label" style="margin-bottom:13px">Protected view · Gemini receives</div>
+              <div id="mirror" class="mirror empty">Your protected text will appear here as you write.</div>
+            </div>
+          </div>
+
+          <div class="composer-bottom">
+            <span class="status" id="status">Nothing leaves this screen until you reflect.</span>
+            <button class="primary" id="reflect">Reflect with Gemini&nbsp; ✦</button>
+          </div>
+        </div>
+
+        <div class="card radar-card" id="patterns">
+          <div class="card-head">
+            <div class="card-head-left">
+              <span class="spark">✦</span>
+              <div>
+                <div class="card-title">Pattern Radar <span class="signature">SIGNATURE AI FEATURE</span></div>
+                <div class="card-sub">AI-powered insights from your reflections over time</div>
+              </div>
+            </div>
+            <span class="ai-badge">GEMINI INSIGHT</span>
+          </div>
+
+          <div id="radar" class="radar">
+            <div class="radar-empty">
+              <div class="orb"></div>
+              Your patterns will emerge as you write.
+            </div>
+          </div>
+
+          <div style="padding:0 20px 20px">
+            <button class="quiet" id="radar-btn">Analyze my patterns&nbsp; ↗</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="right-stack">
+
+        <div class="insight-card">
+          <div class="insight-title"><span>✦</span>Today's Insight</div>
+          <div class="insight-copy">Your reflections will become clearer when you give your thoughts a little space.</div>
+          <div class="insight-source">— Gemini · private reflection</div>
+        </div>
+
+        <div class="mind-card card">
+          <div class="card-title">Your Mind at a Glance</div>
+          <div class="card-sub">Your private journal activity</div>
+          <div class="mind-ring">
+            <div class="ring-inner">
+              <div class="ring-number" id="mind-count">—</div>
+              <div class="ring-label">ENTRIES</div>
+            </div>
+          </div>
+          <div class="mind-caption">Patterns become visible as your journal grows.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="guard" id="privacy">
+      <div class="guard-head">
+        <div class="guard-title">Privacy Shield</div>
+        <span class="shield">PROTECTED</span>
+      </div>
+      <div class="guard-desc">
+        Add names you never want Gemini to receive. Emails, phone numbers,
+        IDs, cards and money amounts are detected automatically.
+      </div>
+      <div class="guard-row">
+        <input id="names" placeholder="e.g. Priya, Rahul, Meerut Foods" autocomplete="off">
+        <button class="quiet" id="save-names">Save protection</button>
+      </div>
+    </div>
+
+    <div id="history">
+      <div class="section-title">
+        <h2>Your timeline</h2>
+        <span>Private · only visible to you</span>
+      </div>
+      <div id="thread"></div>
+    </div>
+
+    <footer>
+      <div>Your entries are isolated under your authenticated Firebase user ID.</div>
+      <button class="quiet" id="isolation">Verify account isolation</button>
+      <div id="isolation-result"></div>
+      <div style="margin-top:18px">Built with Google AI · Firebase · Cloud Run</div>
+    </footer>
+
+  </section>
+
+</div>
+</main>
+</div>
+
+<script>
+document.querySelectorAll(".nav button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));
+    btn.classList.add("active");
+    const target=document.getElementById(btn.dataset.section);
+    if(target) target.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+});
+</script>
+<script type="module">
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+ getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, getDoc }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const $=id=>document.getElementById(id);
+let auth,db,user=null;
+let timer;
+const TOKEN=/\[([A-Z]+)_(\d+)\]/g;
+let seen=new Set();
+
+$("today").textContent=new Date().toLocaleDateString(undefined,{
+ weekday:"long",month:"short",day:"numeric"
+});
+
+const cfg=await (await fetch("/api/config")).json();
+
+if(!cfg.apiKey){
+ $("gate-error").textContent="Firebase configuration is missing.";
+}else{
+ const fbApp=initializeApp(cfg);
+ auth=getAuth(fbApp);
+ db=getFirestore(fbApp);
+
+ onAuthStateChanged(auth,async u=>{
+   user=u;
+   $("gate").classList.toggle("hidden",!!u);
+   $("app").classList.toggle("hidden",!u);
+   $("signout").classList.toggle("hidden",!u);
+
+   if(u){
+     $("user-email").textContent=u.email||"";
+     const mc=$("mind-count"); if(mc) mc.textContent="—";
+     $("avatar").textContent=(u.email||"J").charAt(0).toUpperCase();
+     await loadNames();
+     await loadThread();
+   }
+ });
+}
+
+$("signin").onclick=async()=>{
+ try{
+   await signInWithPopup(auth,new GoogleAuthProvider());
+ }catch(e){$("gate-error").textContent=e.message}
+};
+
+$("signout").onclick=()=>signOut(auth);
+
+async function api(path,opts={}){
+ const token=await user.getIdToken();
+ const res=await fetch(path,{
+   ...opts,
+   headers:{
+     "Content-Type":"application/json",
+     "Authorization":`Bearer ${token}`
+   }
+ });
+ const body=await res.json();
+ if(!res.ok)throw new Error(body.error||`Request failed (${res.status})`);
+ return body;
+}
+
+function notify(msg){
+ const n=$("notice");
+ if(!msg){n.classList.add("hidden");return}
+ n.classList.remove("hidden");
+ n.style.cssText=
+ "background:#281515;border:1px solid #4b2727;color:#ffabab;padding:12px 16px;border-radius:12px;margin-bottom:18px;font-size:12px";
+ n.textContent=msg;
+}
+
+function escape(s){
+ return String(s).replace(/[&<>]/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;"
+ }[c]));
+}
+
+function paint(redacted,summary){
+ const mirror=$("mirror");
+ if(!redacted.trim()){
+   mirror.className="mirror empty";
+   mirror.textContent="Your protected text will appear here as you write.";
+   seen=new Set();
+   return;
+ }
+
+ mirror.className="mirror";
+ const labels=Object.fromEntries(summary.map(s=>[s.token,s.label]));
+ let html="",last=0,m;
+ TOKEN.lastIndex=0;
+
+ while((m=TOKEN.exec(redacted))!==null){
+   html+=escape(redacted.slice(last,m.index));
+   const fresh=seen.has(m[0])?"":" fresh";
+   seen.add(m[0]);
+   html+=`<span class="bar${fresh}">${escape(labels[m[0]]||m[1].toLowerCase())}</span>`;
+   last=m.index+m[0].length;
+ }
+ html+=escape(redacted.slice(last));
+ mirror.innerHTML=html;
+
+ $("status").textContent=summary.length
+ ? `${summary.length} private detail${summary.length>1?"s":""} protected before Gemini.`
+ : "Privacy scan complete · nothing sensitive detected.";
+}
+
+$("entry").addEventListener("input",()=>{
+ clearTimeout(timer);
+ const value=$("entry").value;
+
+ if(!value.trim()){
+   paint("",[]);
+   return;
+ }
+
+ $("status").textContent="Scanning locally for private details…";
+
+ timer=setTimeout(async()=>{
+   try{
+     const r=await api("/api/preview",{
+       method:"POST",
+       body:JSON.stringify({text:value})
+     });
+     paint(r.redacted,r.summary);
+   }catch(e){
+     $("status").textContent="Privacy scan unavailable.";
+   }
+ },300);
+});
+
+$("reflect").onclick=async()=>{
+ const text=$("entry").value.trim();
+ if(!text)return;
+
+ notify("");
+ $("reflect").disabled=true;
+ $("status").textContent="Gemini is reflecting on your thought…";
+
+ try{
+   await api("/api/reflect",{
+     method:"POST",
+     body:JSON.stringify({text})
+   });
+
+   $("entry").value="";
+   paint("",[]);
+   await loadThread();
+
+   $("status").textContent="Reflection saved privately.";
+ }catch(e){
+   notify(e.message);
+   $("status").textContent="";
+ }
+ $("reflect").disabled=false;
+};
+
+async function loadThread(){
+ const result=await api("/api/entries");
+ const entries=result.entries||[];
+ const thread=$("thread");
+
+ $("entry-count").textContent=entries.length;
+
+ thread.innerHTML="";
+
+ if(!entries.length){
+   thread.innerHTML=`
+   <div class="card" style="text-align:center;padding:40px;color:#59615d;font-size:12px">
+     Your first reflection will appear here.
+   </div>`;
+   return;
+ }
+
+ for(const e of entries){
+   const el=document.createElement("article");
+   el.className="entry";
+
+   const when=e.created_at
+    ?new Date(e.created_at).toLocaleString(undefined,{
+      day:"numeric",month:"short",year:"numeric",
+      hour:"numeric",minute:"2-digit"
+    })
+    :"just now";
+
+   const held=(e.receipt?.withheld||[]).length;
+
+   el.innerHTML=`
+     <div class="entry-meta">
+       <span class="stamp">${when}</span>
+       <span class="stamp">${held?held+" protected": "privacy checked"}</span>
+     </div>
+
+     <div class="said">${escape(e.text)}</div>
+
+     <div class="back">${escape(e.reply)}</div>
+
+     <button class="receipt-toggle">
+       ${held
+        ?held+" private detail"+(held>1?"s":"")+" protected · view receipt"
+        :"View privacy receipt"}
+     </button>
+
+     <div class="receipt hidden">
+       <dl>
+         <dt>Gemini model</dt>
+         <dd>${escape(e.receipt?.model||e.model||"Gemini")}</dd>
+
+         <dt>Protected</dt>
+         <dd>${held
+          ?escape((e.receipt.withheld||[]).map(w=>w.label).join(", "))
+          :"Nothing detected"}</dd>
+
+         <dt>Stored at</dt>
+         <dd>${escape(e.receipt?.stored_at||"Your private Firestore path")}</dd>
+
+         <dt>Earlier turns</dt>
+         <dd>${e.receipt?.turns_replayed??0}</dd>
+       </dl>
+
+       <div class="seen">
+         ${renderRedacted(
+           e.receipt?.sent_to_gemini||e.redacted||"",
+           e.receipt?.withheld||[]
+         )}
+       </div>
+     </div>`;
+
+   const btn=el.querySelector(".receipt-toggle");
+   const box=el.querySelector(".receipt");
+   btn.onclick=()=>box.classList.toggle("hidden");
+
+   thread.appendChild(el);
+ }
+}
+
+function renderRedacted(text,summary){
+ const labels=Object.fromEntries(summary.map(s=>[s.token,s.label]));
+ let html="",last=0,m;
+ TOKEN.lastIndex=0;
+
+ while((m=TOKEN.exec(text))!==null){
+   html+=escape(text.slice(last,m.index));
+   html+=`<span class="bar">${escape(labels[m[0]]||m[1].toLowerCase())}</span>`;
+   last=m.index+m[0].length;
+ }
+ return html+escape(text.slice(last));
+}
+
+async function loadNames(){
+ const {names}=await api("/api/protected-names");
+ $("names").value=(names||[]).join(", ");
+}
+
+$("save-names").onclick=async()=>{
+ try{
+   const names=$("names").value.split(",")
+    .map(s=>s.trim()).filter(Boolean);
+
+   await api("/api/protected-names",{
+     method:"POST",
+     body:JSON.stringify({names})
+   });
+
+   $("save-names").textContent="Protected ✓";
+
+   setTimeout(()=>{
+     $("save-names").textContent="Save protection";
+   },1400);
+
+   const r=await api("/api/preview",{
+     method:"POST",
+     body:JSON.stringify({text:$("entry").value})
+   });
+
+   paint(r.redacted,r.summary);
+ }catch(e){notify(e.message)}
+};
+
+/* PATTERN RADAR */
+$("radar-btn").onclick=async()=>{
+ const btn=$("radar-btn");
+ const radar=$("radar");
+
+ btn.disabled=true;
+ btn.textContent="Finding patterns…";
+
+ radar.innerHTML=`
+ <div class="radar-empty">
+   <div class="orb"></div>
+   Gemini is looking across your reflections…
+ </div>`;
+
+ try{
+   const result=await api("/api/pattern-radar",{
+     method:"POST",
+     body:JSON.stringify({})
+   });
+
+   renderPatterns(result);
+   btn.textContent="Refresh pattern radar";
+ }catch(e){
+   radar.innerHTML=`
+   <div class="radar-empty">
+     Pattern Radar needs a few saved reflections before it can surface meaningful patterns.
+   </div>`;
+   btn.textContent="Analyze my patterns ↗";
+ }
+
+ btn.disabled=false;
+};
+
+function renderPatterns(result){
+ const radar=$("radar");
+
+ let patterns=result.patterns||result.insights||[];
+
+ if(typeof result==="string")patterns=[result];
+
+ if(!patterns.length && result.analysis){
+   radar.innerHTML=`
+    <div class="pattern">
+      <strong>Your journal signal</strong>
+      <p>${escape(result.analysis)}</p>
+    </div>`;
+   return;
+ }
+
+ radar.innerHTML=patterns.slice(0,4).map((p,i)=>{
+   if(typeof p==="string"){
+     return `<div class="pattern">
+       <strong>${String(i+1).padStart(2,"0")} · ${escape(p)}</strong>
+     </div>`;
+   }
+
+   return `<div class="pattern">
+     <strong>${escape(p.title||p.name||"Emerging pattern")}</strong>
+     <p>${escape(p.description||p.summary||p.insight||"A recurring theme in your reflections.")}</p>
+   </div>`;
+ }).join("");
+}
+
+/* NAV */
+document.querySelectorAll(".nav button").forEach(btn=>{
+ btn.onclick=()=>{
+   document.querySelectorAll(".nav button")
+    .forEach(x=>x.classList.remove("active"));
+   btn.classList.add("active");
+
+   const id=btn.dataset.section;
+   const target=$(id);
+   if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
+ };
+});
+
+/* FIRESTORE ISOLATION DEMO */
+$("isolation").onclick=async()=>{
+ const box=$("isolation-result");
+ const strangerUid="some-other-account-0000";
+
+ try{
+   await getDoc(doc(db,"users",strangerUid,"entries","probe"));
+   box.style.cssText=
+    "display:block;margin-top:12px;color:#ff9b9b";
+   box.textContent="Unexpected read success. Check Firestore rules.";
+ }catch(e){
+   box.style.cssText=
+    "display:block;margin-top:12px;color:#9bf5c8";
+   box.textContent=
+    "✓ Access blocked by Firestore rules. Your account cannot read another user's journal.";
+ }
+};
+</script>
+
+<script>
+const syncJournalCount=()=>{
+  const a=document.getElementById("entry-count");
+  const b=document.getElementById("mind-count");
+  if(a&&b&&a.textContent!=="—") b.textContent=a.textContent;
+};
+setInterval(syncJournalCount,500);
+</script>
+</body>
+</html>
