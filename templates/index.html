@@ -271,6 +271,12 @@
     padding: 9px 14px; border-radius: 999px;
     background: #0d1220; border: 1px solid #232c40;
     color: var(--text-dim); font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .chip-btn.active {
+    background: #1e2942;
+    color: #fff;
+    border-color: #5b6bff;
   }
   .chip-btn svg { width: 15px; height: 15px; }
   .count { margin-left: auto; color: var(--text-mute); font-size: 13px; }
@@ -295,6 +301,7 @@
     color: #fff; font-weight: 700; font-size: 16px;
     border: none; border-radius: 14px; padding: 15px 24px; cursor: pointer;
     white-space: nowrap;
+    transition: opacity 0.2s ease;
   }
   .reflect-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   .reflect-btn .arrow { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.2); display: grid; place-items: center; }
@@ -361,7 +368,7 @@
   .insight .ihead svg { width: 20px; height: 20px; color: #b9a0ff; }
   .insight .ihead .t { font-size: 18px; font-weight: 700; }
   .insight blockquote {
-    font-size: 18px; font-style: italic; color: #dfe4f2; line-height: 1.5;
+    font-size: 17px; font-style: italic; color: #dfe4f2; line-height: 1.55;
     font-family: Georgia, 'Times New Roman', serif;
   }
   .insight .by { color: var(--text-dim); font-style: italic; margin-top: 12px; font-family: Georgia, serif; }
@@ -583,7 +590,7 @@ Share your thoughts, questions, wins, or anything you're feeling..."></textarea>
             <div class="redact-row">
               <div class="redact-note">
                 <div class="sh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V6Z"/></svg></div>
-                <div>Your text will be scanned and sensitive details (like names, emails, phone numbers) will be hidden before Gemini sees it.</div>
+                <div id="status">Your text will be scanned and sensitive details (like names, emails, phone numbers) will be hidden before Gemini sees it.</div>
               </div>
               <button class="reflect-btn" id="reflect">
                 Reflect with Gemini
@@ -659,8 +666,8 @@ Share your thoughts, questions, wins, or anything you're feeling..."></textarea>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 15.5 8.5 21 11l-5.5 2.5L13 19l-2.5-5.5L5 11l5.5-2.5Z"/></svg>
               <span class="t">Today's Insight</span>
             </div>
-            <blockquote>"Clarity comes not from having all the answers, but from asking better questions."</blockquote>
-            <div class="by">— Gemini</div>
+            <blockquote id="insightQuote">"Clarity comes not from having all the answers, but from asking better questions."</blockquote>
+            <div class="by" id="insightBy">— Gemini</div>
             <svg class="leaf-bg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 20A7 7 0 0 1 4 13c0-6 8-9 8-9s8 3 8 9a7 7 0 0 1-7 7Z"/></svg>
           </section>
 
@@ -745,114 +752,211 @@ Share your thoughts, questions, wins, or anything you're feeling..."></textarea>
 </div>
 
 <script>
-  /* UI Scripts */
-  (function () {
-    var ta = document.getElementById('entry');
-    var count = document.getElementById('count');
-    if (ta && count) {
-      ta.addEventListener('input', function () {
-        count.textContent = ta.value.length + '/5000';
-      });
-    }
+(() => {
+  "use strict";
 
-    document.querySelectorAll('.tab').forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        document.querySelectorAll('.tab').forEach(function (t) { t.classList.remove('active'); });
-        tab.classList.add('active');
-      });
-    });
-  })();
+  const $ = (id) => document.getElementById(id);
 
-  /* Backend / Google Cloud API Integration */
-  const entry = document.getElementById("entry");
-  const reflectBtn = document.getElementById("reflect");
+  const entry = $("entry");
+  const reflectBtn = $("reflect");
+  const status = $("status");
+  const count = $("count");
+  const insightQuote = $("insightQuote");
+  const insightBy = $("insightBy");
+
+  let previewTimer;
+  let lastProtectedText = "";
 
   async function api(path, options = {}) {
     const response = await fetch(path, {
       credentials: "include",
+      ...options,
       headers: {
         "Content-Type": "application/json",
         ...(options.headers || {})
-      },
-      ...options
+      }
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || "API request failed");
+    let body = {};
+    try {
+      body = await response.json();
+    } catch (_) {
+      body = {};
     }
 
-    return data;
+    if (!response.ok) {
+      throw new Error(
+        body.error || `Request failed (${response.status})`
+      );
+    }
+
+    return body;
   }
 
-  let previewTimer;
+  async function previewText(text) {
+    const result = await api("/api/preview", {
+      method: "POST",
+      body: JSON.stringify({ text })
+    });
 
-  entry.addEventListener("input", () => {
-    clearTimeout(previewTimer);
+    lastProtectedText =
+      result.redacted ??
+      result.protected_text ??
+      result.redacted_text ??
+      text;
 
-    previewTimer = setTimeout(async () => {
-      const text = entry.value.trim();
-      if (!text) return;
+    return result;
+  }
+
+  if (entry) {
+    entry.addEventListener("input", () => {
+      clearTimeout(previewTimer);
+      const text = entry.value;
+
+      if (count) {
+        count.textContent = `${text.length}/5000`;
+      }
+
+      if (!text.trim()) {
+        lastProtectedText = "";
+        if (status) {
+          status.textContent = "Your text will be scanned and sensitive details (like names, emails, phone numbers) will be hidden before Gemini sees it.";
+        }
+        return;
+      }
+
+      if (status) {
+        status.textContent = "Scanning locally for private details…";
+      }
+
+      previewTimer = setTimeout(async () => {
+        try {
+          await previewText(text);
+          if (status) {
+            status.textContent = "Privacy Shield active: Sensitive details redacted before Gemini.";
+          }
+        } catch (error) {
+          console.error("Preview error:", error);
+          if (status) {
+            status.textContent = "Privacy scan ready.";
+          }
+        }
+      }, 350);
+    });
+  }
+
+  function renderReflection(result) {
+    const reply =
+      result?.reply ??
+      result?.reflection ??
+      result?.insight ??
+      result?.message ??
+      "";
+
+    if (!reply) return;
+
+    if (insightQuote) {
+      insightQuote.textContent = `"${reply}"`;
+    }
+    if (insightBy) {
+      insightBy.textContent = "— Gemini · private reflection";
+    }
+  }
+
+  if (reflectBtn && entry) {
+    reflectBtn.addEventListener("click", async () => {
+      const originalText = entry.value.trim();
+
+      if (!originalText) {
+        if (status) {
+          status.textContent = "Please write something first.";
+        }
+        entry.focus();
+        return;
+      }
+
+      clearTimeout(previewTimer);
+      const originalLabel = reflectBtn.innerHTML;
+
+      reflectBtn.disabled = true;
+      reflectBtn.setAttribute("aria-busy", "true");
+      reflectBtn.innerHTML = "Reflecting with Gemini&nbsp; ✦";
+
+      if (status) {
+        status.textContent = "Gemini is reflecting on your thoughts…";
+      }
 
       try {
-        const preview = await api("/api/preview", {
-          method: "POST",
-          body: JSON.stringify({ text })
-        });
-
-        window.lastProtectedJournalText =
+        const preview = await previewText(originalText);
+        const protectedText =
           preview.redacted ??
           preview.protected_text ??
           preview.redacted_text ??
-          text;
+          lastProtectedText ??
+          originalText;
+
+        const result = await api("/api/reflect", {
+          method: "POST",
+          body: JSON.stringify({
+            text: protectedText
+          })
+        });
+
+        window.lastJournalReflection = result;
+        window.lastProtectedJournalText = protectedText;
+
+        renderReflection(result);
+
+        document.dispatchEvent(
+          new CustomEvent("journal:reflection", {
+            detail: result
+          })
+        );
+
+        entry.value = "";
+        if (count) count.textContent = "0/5000";
+        if (status) {
+          status.textContent = "Reflection saved privately. Look at Today's Insight!";
+        }
+
       } catch (error) {
-        console.error("Preview failed:", error);
+        console.error("Gemini reflection failed:", error);
+        if (status) {
+          status.textContent = error.message || "Gemini could not answer.";
+        }
+      } finally {
+        reflectBtn.disabled = false;
+        reflectBtn.removeAttribute("aria-busy");
+        reflectBtn.innerHTML = originalLabel;
       }
-    }, 350);
+    });
+  }
+
+  /* Active toggles for Tabs */
+  document.querySelectorAll(".composer-tabs .tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".composer-tabs .tab").forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+    });
   });
 
-  reflectBtn.addEventListener("click", async () => {
-    const text = entry.value.trim();
-
-    if (!text) return;
-
-    reflectBtn.disabled = true;
-
-    try {
-      const preview = await api("/api/preview", {
-        method: "POST",
-        body: JSON.stringify({ text })
-      });
-
-      const protectedText =
-        preview.redacted ??
-        preview.protected_text ??
-        preview.redacted_text ??
-        text;
-
-      window.lastProtectedJournalText = protectedText;
-
-      const result = await api("/api/reflect", {
-        method: "POST",
-        body: JSON.stringify({
-          text: protectedText
-        })
-      });
-
-      window.lastJournalReflection = result;
-
-      document.dispatchEvent(
-        new CustomEvent("journal:reflection", {
-          detail: result
-        })
-      );
-    } catch (error) {
-      console.error("Gemini reflection failed:", error);
-    } finally {
-      reflectBtn.disabled = false;
-    }
+  /* Active toggles for Chips */
+  document.querySelectorAll(".chip-btn").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chip.classList.toggle("active");
+    });
   });
+
+  /* Active toggles for Sidebar */
+  document.querySelectorAll(".nav a").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      document.querySelectorAll(".nav a").forEach((a) => a.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
+
+})();
 </script>
 </body>
 </html>
