@@ -1344,6 +1344,2378 @@ footer button{margin-top:10px}
   100%{transform:translateY(0);opacity:1}
 }
 
+
+/* ============================================================
+   REFERENCE UI — FINAL VISUAL LAYER
+   Visual-only override. Existing functionality preserved.
+   ============================================================ */
+
+:root{
+  --bg:#070b16;
+  --panel:#0d1424;
+  --panel2:#111a2d;
+  --line:rgba(164,184,225,.12);
+  --line2:rgba(164,184,225,.20);
+  --text:#f5f7ff;
+  --muted:#7f8aa3;
+  --muted2:#aab4c9;
+  --accent:#8b9cff;
+  --accent2:#b18cff;
+  --blue:#6da8ff;
+  --pink:#e98bb5;
+  --gold:#e8bd72;
+  --danger:#ff7185;
+  --shadow:0 28px 90px rgba(0,0,0,.48);
+}
+
+/* ---------- BASE ---------- */
+
+html{
+  background:#070b16;
+}
+
+body{
+  background:
+    radial-gradient(900px 520px at 78% -8%,rgba(94,111,214,.15),transparent 64%),
+    radial-gradient(700px 500px at 22% 15%,rgba(71,95,180,.09),transparent 68%),
+    #070b16;
+  color:var(--text);
+  font-family:"DM Sans",Inter,ui-sans-serif,system-ui,-apple-system,
+    BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+button,input,textarea{
+  font-family:"DM Sans",Inter,ui-sans-serif,system-ui,sans-serif;
+}
+
+/* ---------- SIDEBAR ---------- */
+
+.sidebar{
+  width:250px;
+  padding:30px 17px;
+  background:
+    linear-gradient(180deg,rgba(10,15,29,.98),rgba(7,11,22,.98));
+  border-right:1px solid rgba(145,163,210,.12);
+  box-shadow:18px 0 60px rgba(0,0,0,.16);
+}
+
+.logo{
+  padding:5px 13px 44px;
+  font-size:24px;
+  letter-spacing:-1px;
+  color:#f5f7ff;
+}
+
+.logo:before{
+  color:#a0a9ff;
+}
+
+.logo span{
+  color:#f5f7ff;
+}
+
+.nav{
+  gap:6px;
+}
+
+.nav button{
+  position:relative;
+  color:#818ca5;
+  padding:13px 16px;
+  border-radius:12px;
+  font-size:13px;
+  letter-spacing:.05px;
+}
+
+.nav button:before{
+  content:"";
+  display:inline-block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  margin-right:14px;
+  background:#414b65;
+  vertical-align:middle;
+}
+
+.nav button:hover{
+  color:#eef1ff;
+  background:rgba(120,140,200,.07);
+}
+
+.nav button.active{
+  color:#f5f7ff;
+  background:
+    linear-gradient(90deg,rgba(112,128,225,.18),rgba(112,128,225,.055));
+  box-shadow:
+    inset 2px 0 #8e9aff,
+    0 8px 24px rgba(57,72,150,.08);
+}
+
+.nav button.active:before{
+  background:#9aa6ff;
+  box-shadow:0 0 10px rgba(150,165,255,.65);
+}
+
+/* ---------- SIDEBAR PRIVACY ---------- */
+
+.side-bottom{
+  left:17px;
+  right:17px;
+  bottom:24px;
+}
+
+.privacy-mini{
+  padding:16px;
+  border:1px solid rgba(119,142,203,.17);
+  border-radius:16px;
+  background:
+    linear-gradient(145deg,rgba(39,50,91,.25),rgba(10,16,29,.72));
+}
+
+.privacy-mini strong{
+  font-size:11px;
+  color:#dbe1f5;
+}
+
+.privacy-mini p{
+  color:#68748e;
+}
+
+/* ---------- MAIN / TOPBAR ---------- */
+
+.main{
+  margin-left:250px;
+}
+
+.topbar{
+  height:72px;
+  padding:0 42px;
+  background:rgba(7,11,22,.72);
+  border-bottom:1px solid rgba(145,163,210,.10);
+}
+
+.user{
+  color:#9aa5bd;
+}
+
+.avatar{
+  width:36px;
+  height:36px;
+  background:
+    linear-gradient(135deg,#313c78,#17213e);
+  border:1px solid rgba(154,169,255,.27);
+  color:#c4cbff;
+}
+
+/* ---------- CONTENT ---------- */
+
+.content{
+  width:min(1280px,calc(100% - 76px));
+  padding:42px 0 80px;
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+  min-height:260px;
+  padding:35px 34px 34px;
+  margin-bottom:20px;
+  border-radius:26px;
+  overflow:hidden;
+  align-items:flex-end;
+
+  background:
+    radial-gradient(circle at 72% 20%,rgba(245,178,105,.26),transparent 17%),
+    radial-gradient(ellipse at 62% 35%,rgba(76,116,211,.30),transparent 40%),
+    radial-gradient(ellipse at 28% 78%,rgba(74,62,143,.25),transparent 48%),
+    linear-gradient(145deg,#111b35 0%,#172646 48%,#10172b 100%);
+
+  border:1px solid rgba(142,162,220,.14);
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.hero:before{
+  right:-5%;
+  top:-30px;
+  width:700px;
+  height:310px;
+  background:
+    radial-gradient(circle at 67% 37%,rgba(255,193,111,.38),transparent 12%),
+    radial-gradient(ellipse at 58% 45%,rgba(87,130,231,.26),transparent 38%),
+    radial-gradient(ellipse at 32% 65%,rgba(118,91,212,.18),transparent 45%);
+  filter:blur(25px);
+}
+
+.hero:after{
+  left:-3%;
+  right:-3%;
+  bottom:-1px;
+  height:112px;
+  opacity:.68;
+  background:
+    linear-gradient(
+      145deg,
+      transparent 0 18%,
+      rgba(27,39,70,.78) 18% 29%,
+      rgba(13,22,42,.94) 29% 45%,
+      rgba(7,12,25,1) 45% 100%
+    );
+  clip-path:polygon(
+    0 78%,7% 57%,14% 69%,22% 38%,30% 64%,
+    39% 46%,47% 70%,57% 30%,66% 63%,
+    75% 42%,83% 68%,91% 47%,100% 65%,
+    100% 100%,0 100%
+  );
+}
+
+.hero > div:first-child{
+  position:relative;
+  z-index:2;
+}
+
+.hero .eyebrow{
+  color:#9ca8ff;
+  font-size:9px;
+  letter-spacing:2.2px;
+}
+
+.hero h1{
+  margin:13px 0 12px;
+  font-size:54px;
+  line-height:1;
+  letter-spacing:-2.6px;
+  color:#f7f8ff;
+}
+
+.hero p{
+  color:#b3bfd7;
+  font-size:15px;
+}
+
+.date{
+  position:relative;
+  z-index:3;
+  color:#aeb9d1;
+  border-color:rgba(157,174,225,.17);
+  background:rgba(8,14,29,.30);
+  backdrop-filter:blur(12px);
+}
+
+.hero-quote{
+  z-index:3;
+  right:24px;
+  top:20px;
+  color:#e2e5f6;
+  background:rgba(11,19,40,.52);
+  border-color:rgba(164,153,255,.25);
+}
+
+.hero-motto{
+  z-index:3;
+  color:#aeb9ef;
+}
+
+/* ---------- STATS ---------- */
+
+.stats{
+  gap:13px;
+  margin:0 0 22px;
+}
+
+.stat{
+  min-height:112px;
+  padding:19px 20px;
+  border-radius:17px;
+  background:
+    linear-gradient(145deg,rgba(19,28,48,.88),rgba(10,16,29,.94));
+  border-color:rgba(143,164,218,.15);
+  box-shadow:0 15px 45px rgba(0,0,0,.12);
+}
+
+.stat:after{
+  background:rgba(126,142,255,.06);
+}
+
+.stat-icon{
+  color:#aab5ff;
+  font-size:18px;
+}
+
+.stat-value{
+  color:#f3f5ff;
+  font-size:24px;
+}
+
+.stat-label{
+  color:#8b97af;
+}
+
+.stat-meta{
+  color:#8898e9;
+}
+
+/* ---------- DASHBOARD GRID ---------- */
+
+.dashboard-grid{
+  grid-template-columns:minmax(0,1.68fr) minmax(300px,.76fr);
+  gap:20px;
+}
+
+/* ---------- COMPOSER ---------- */
+
+.composer-card{
+  border-radius:21px;
+  background:
+    linear-gradient(145deg,rgba(17,26,45,.96),rgba(8,13,25,.98));
+  border-color:rgba(145,165,218,.18);
+  box-shadow:
+    0 25px 75px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.018);
+}
+
+.composer-top{
+  height:60px;
+  padding:0 22px;
+  border-bottom-color:rgba(145,165,218,.11);
+}
+
+.label{
+  color:#77849e;
+  letter-spacing:1.5px;
+}
+
+.shield{
+  color:#79e0b4;
+}
+
+.composer-body{
+  min-height:300px;
+}
+
+.write-pane,.mirror-pane{
+  padding:25px;
+}
+
+.write-pane{
+  border-right-color:rgba(145,165,218,.11);
+}
+
+textarea{
+  height:225px;
+  color:#edf1ff;
+  font-size:19px;
+  line-height:1.65;
+}
+
+textarea::placeholder{
+  color:#56627a;
+}
+
+.mirror{
+  color:#b9c3d8;
+}
+
+.mirror.empty{
+  color:#536078;
+}
+
+.composer-bottom{
+  min-height:74px;
+  padding:14px 20px;
+  border-top-color:rgba(145,165,218,.11);
+}
+
+.status{
+  color:#65728a;
+}
+
+.primary{
+  border-radius:11px;
+  padding:13px 20px;
+  background:linear-gradient(135deg,#a8b1ff,#8190ff);
+  color:#080d1b;
+  box-shadow:0 9px 30px rgba(107,121,255,.20);
+}
+
+.primary:hover{
+  box-shadow:0 13px 38px rgba(107,121,255,.32);
+}
+
+/* ---------- RIGHT COLUMN ---------- */
+
+.right-stack{
+  gap:15px;
+}
+
+.card,.insight-card,.guard{
+  border-color:rgba(145,165,218,.16);
+  background:
+    linear-gradient(145deg,rgba(17,25,43,.94),rgba(8,13,25,.98));
+}
+
+.insight-card{
+  min-height:220px;
+  padding:23px;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(171,137,255,.20),transparent 35%),
+    linear-gradient(145deg,rgba(35,30,70,.88),rgba(10,15,29,.98));
+}
+
+.insight-title{
+  color:#f0f2ff;
+}
+
+.insight-title span{
+  color:#b7a5ff;
+}
+
+.insight-copy{
+  color:#d9dced;
+  font-size:16px;
+  line-height:1.6;
+}
+
+.insight-source{
+  color:#8985a5;
+}
+
+.mind-card{
+  padding:21px;
+}
+
+.card-title{
+  color:#edf0fa;
+}
+
+.card-sub{
+  color:#707d96;
+}
+
+.mind-ring{
+  background:
+    conic-gradient(
+      #a18aff,
+      #739fff,
+      #65d6bb,
+      #e8bd72,
+      #a18aff
+    );
+}
+
+.mind-ring:after{
+  background:#0d1424;
+}
+
+.ring-number{
+  color:#f4f6ff;
+}
+
+.ring-label{
+  color:#77839a;
+}
+
+.mind-caption{
+  color:#707d95;
+}
+
+/* ---------- PATTERN RADAR ---------- */
+
+.radar-card{
+  margin-top:20px;
+  border-color:rgba(153,136,255,.18);
+  background:
+    linear-gradient(145deg,rgba(20,23,46,.96),rgba(8,13,25,.99));
+  box-shadow:
+    0 0 0 1px rgba(151,131,255,.035),
+    0 22px 75px rgba(39,28,92,.18);
+}
+
+.radar-card:before{
+  width:2px;
+  background:linear-gradient(180deg,#a993ff,transparent);
+}
+
+.card-head{
+  padding:19px 21px;
+  border-bottom-color:rgba(151,166,218,.10);
+}
+
+.spark{
+  color:#b6a5ff;
+}
+
+.ai-badge{
+  color:#9ca9ff;
+}
+
+.signature{
+  color:#c4b7ff;
+  background:rgba(161,137,255,.10);
+  border-color:rgba(161,137,255,.22);
+}
+
+.radar{
+  padding:21px;
+}
+
+.quiet{
+  color:#adb7ce;
+  border-color:rgba(146,163,210,.18);
+  background:rgba(255,255,255,.025);
+}
+
+.quiet:hover{
+  background:rgba(130,145,220,.08);
+  color:#f2f4ff;
+}
+
+/* ---------- MORE WAYS ---------- */
+
+.extra-features{
+  margin-top:20px;
+  padding:20px;
+  border-radius:20px;
+  border-color:rgba(139,158,218,.14);
+  background:
+    linear-gradient(145deg,rgba(17,27,48,.88),rgba(8,14,27,.96));
+}
+
+.extra-title{
+  color:#edf0fa;
+}
+
+.extra-sub{
+  color:#78859e;
+}
+
+.extra-grid{
+  gap:12px;
+}
+
+.extra-card{
+  min-height:94px;
+  padding:16px;
+  border-color:rgba(137,158,215,.13);
+  border-radius:15px;
+  background:rgba(255,255,255,.022);
+}
+
+.extra-card:hover{
+  border-color:rgba(150,162,255,.30);
+  background:rgba(130,145,230,.06);
+  box-shadow:0 16px 40px rgba(0,0,0,.22);
+}
+
+.extra-icon{
+  background:rgba(117,105,235,.13);
+  color:#b5a8ff;
+}
+
+.extra-card strong{
+  color:#e9edf9;
+}
+
+.extra-card span{
+  color:#74819a;
+}
+
+.extra-card small{
+  color:#8f9cf1;
+}
+
+/* ---------- PRIVACY / SETTINGS / TIMELINE ---------- */
+
+.privacy-center,
+.settings-panel{
+  background:
+    radial-gradient(circle at 90% 5%,rgba(88,121,224,.10),transparent 28%),
+    linear-gradient(145deg,rgba(13,24,43,.97),rgba(7,13,25,.99));
+  border-color:rgba(143,163,217,.15);
+}
+
+.section-kicker{
+  color:#8290d8;
+}
+
+.privacy-head h2,
+.settings-head h2{
+  color:#f1f3fb;
+}
+
+.privacy-head p,
+.settings-head p{
+  color:#7e8ca5;
+}
+
+.privacy-feature,
+.privacy-controls,
+.settings-list{
+  background:rgba(5,11,22,.55);
+  border-color:rgba(130,151,209,.14);
+}
+
+.privacy-feature-icon{
+  background:rgba(102,129,238,.10);
+  color:#9eabff;
+}
+
+.privacy-feature h3,
+.privacy-controls strong{
+  color:#e8ecf8;
+}
+
+.privacy-feature p,
+.privacy-controls span,
+.setting-copy span{
+  color:#71809a;
+}
+
+.status-pill{
+  color:#72e0b0;
+  border-color:rgba(92,224,176,.22);
+  background:rgba(62,207,156,.06);
+}
+
+.setting-row{
+  border-bottom-color:rgba(130,151,209,.10);
+}
+
+.setting-icon{
+  background:rgba(99,103,190,.13);
+  color:#aaa2ff;
+}
+
+.setting-copy strong{
+  color:#e9edf9;
+}
+
+.setting-value{
+  color:#78dcb2;
+}
+
+.settings-about{
+  background:linear-gradient(120deg,rgba(45,43,92,.25),rgba(9,16,30,.40));
+  border-color:rgba(133,126,224,.16);
+}
+
+.entry{
+  background:rgba(12,18,32,.76);
+  border-color:rgba(130,151,209,.13);
+}
+
+.said{
+  color:#e8ecf7;
+}
+
+.back{
+  border-left-color:#8292ff;
+  background:rgba(113,131,255,.035);
+  color:#b4bfd3;
+}
+
+/* ---------- TOAST ---------- */
+
+.toast{
+  background:
+    linear-gradient(135deg,rgba(17,27,47,.98),rgba(28,21,49,.98)) !important;
+  border-color:rgba(132,151,255,.34) !important;
+}
+
+.toast-icon{
+  background:rgba(117,137,255,.13);
+  color:#a9b4ff;
+  box-shadow:0 0 20px rgba(117,137,255,.13);
+}
+
+.toast-title{
+  color:#f0f3ff !important;
+}
+
+.toast-sub{
+  color:#7d89a3 !important;
+}
+
+/* ---------- MODALS / VOICE ---------- */
+
+.prompt-overlay{
+  background:rgba(3,7,17,.78);
+}
+
+.prompt-modal{
+  background:
+    radial-gradient(circle at 85% 0%,rgba(116,96,228,.20),transparent 30%),
+    linear-gradient(145deg,#111c35,#080e1d);
+  border-color:rgba(138,157,244,.20);
+}
+
+.prompt-option{
+  background:rgba(5,11,22,.72);
+  border-color:rgba(126,148,210,.15);
+}
+
+.prompt-option:hover{
+  border-color:rgba(125,145,255,.35);
+  background:rgba(84,102,210,.07);
+}
+
+.voice-listening{
+  background:rgba(8,16,31,.97);
+  border-color:rgba(118,222,184,.27);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:1050px){
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+
+  .right-stack{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:850px){
+  .sidebar{
+    width:70px;
+  }
+
+  .main{
+    margin-left:70px;
+  }
+
+  .content{
+    width:calc(100% - 36px);
+  }
+}
+
+@media(max-width:620px){
+  .hero{
+    padding:27px 22px;
+    min-height:230px;
+  }
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .right-stack{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* ============================================================
+   PASS 1 — REFERENCE HOME SHELL
+   Sidebar + header + hero + dashboard proportions
+   ============================================================ */
+
+/* ---------- APP BACKGROUND ---------- */
+
+body{
+  background:
+    radial-gradient(
+      900px 520px at 72% -8%,
+      rgba(90,105,190,.16),
+      transparent 65%
+    ),
+    radial-gradient(
+      700px 500px at 12% 30%,
+      rgba(43,67,135,.09),
+      transparent 70%
+    ),
+    #070c18;
+}
+
+/* ---------- SIDEBAR ---------- */
+
+.sidebar{
+  width:238px !important;
+  padding:26px 14px 22px !important;
+  background:
+    linear-gradient(
+      180deg,
+      #08101e 0%,
+      #070e1a 52%,
+      #060c17 100%
+    ) !important;
+  border-right:1px solid rgba(139,163,221,.13) !important;
+  box-shadow:12px 0 50px rgba(0,0,0,.20) !important;
+}
+
+.logo{
+  padding:3px 10px 34px !important;
+  font-size:21px !important;
+  letter-spacing:-.7px !important;
+}
+
+.logo:before{
+  color:#6edbc8 !important;
+}
+
+.nav{
+  gap:3px !important;
+}
+
+.nav button{
+  min-height:48px !important;
+  padding:11px 13px !important;
+  border-radius:12px !important;
+  font-size:14px !important;
+  color:#8794ad !important;
+}
+
+.nav button:before{
+  width:7px !important;
+  height:7px !important;
+  margin-right:15px !important;
+  background:#485570 !important;
+}
+
+.nav button:hover{
+  color:#edf1ff !important;
+  background:rgba(116,139,211,.065) !important;
+}
+
+.nav button.active{
+  color:#f5f7ff !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(106,126,231,.22),
+      rgba(82,103,194,.075)
+    ) !important;
+  box-shadow:
+    inset 2px 0 #8c9cff,
+    0 8px 25px rgba(46,63,137,.10) !important;
+}
+
+.nav button.active:before{
+  background:#91a1ff !important;
+  box-shadow:0 0 11px rgba(145,161,255,.65) !important;
+}
+
+/* ---------- SIDEBAR BOTTOM ---------- */
+
+.side-bottom{
+  left:18px !important;
+  right:18px !important;
+  bottom:20px !important;
+}
+
+.privacy-mini{
+  padding:16px !important;
+  border-radius:15px !important;
+  border:1px solid rgba(104,136,190,.22) !important;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(19,32,57,.82),
+      rgba(7,14,27,.90)
+    ) !important;
+  box-shadow:0 15px 35px rgba(0,0,0,.20) !important;
+}
+
+/* ---------- MAIN ---------- */
+
+.main{
+  margin-left:238px !important;
+  min-width:0;
+}
+
+/* ---------- TOPBAR ---------- */
+
+.topbar{
+  height:66px !important;
+  padding:0 34px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8,13,25,.80),
+      rgba(8,13,25,.42)
+    ) !important;
+  border-bottom:1px solid rgba(133,156,211,.08) !important;
+}
+
+/*
+   The target feels like one continuous dashboard.
+   Keep the existing topbar for functionality, but visually
+   reduce its separation from the hero.
+*/
+
+.topbar:after{
+  content:"";
+  position:absolute;
+  left:238px;
+  right:0;
+  bottom:-1px;
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(135,154,213,.12),
+    transparent
+  );
+}
+
+.user{
+  color:#9da9c0 !important;
+  font-size:13px !important;
+}
+
+.avatar{
+  width:38px !important;
+  height:38px !important;
+  background:
+    linear-gradient(135deg,#303d78,#17223e) !important;
+  border:1px solid rgba(154,170,255,.28) !important;
+}
+
+/* ---------- CONTENT WIDTH ---------- */
+
+.content{
+  width:min(1275px,calc(100% - 56px)) !important;
+  padding:0 0 48px !important;
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+  position:relative !important;
+  min-height:268px !important;
+  margin:0 0 18px !important;
+  padding:34px 38px 31px !important;
+  border-radius:0 0 25px 25px !important;
+  overflow:hidden !important;
+
+  background:
+    radial-gradient(
+      circle at 67% 39%,
+      rgba(250,177,100,.45),
+      transparent 9%
+    ),
+    radial-gradient(
+      ellipse at 65% 42%,
+      rgba(91,125,214,.35),
+      transparent 33%
+    ),
+    radial-gradient(
+      ellipse at 30% 25%,
+      rgba(104,76,151,.25),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      #1a2545 0%,
+      #182644 40%,
+      #0d182e 72%,
+      #080f20 100%
+    ) !important;
+
+  border:1px solid rgba(132,157,218,.13) !important;
+  border-top:0 !important;
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.27),
+    inset 0 1px 0 rgba(255,255,255,.015) !important;
+}
+
+/* atmospheric sky */
+
+.hero:before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  width:auto !important;
+  height:auto !important;
+  right:auto !important;
+  top:auto !important;
+
+  background:
+    radial-gradient(
+      ellipse 300px 170px at 65% 40%,
+      rgba(255,188,109,.26),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 600px 250px at 52% 40%,
+      rgba(80,112,205,.24),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 500px 250px at 24% 0%,
+      rgba(92,69,133,.22),
+      transparent 68%
+    ) !important;
+
+  filter:blur(18px) !important;
+  z-index:0 !important;
+  pointer-events:none !important;
+}
+
+/* mountain layers */
+
+.hero:after{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+  width:auto !important;
+  height:116px !important;
+  opacity:1 !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      transparent 0 11%,
+      rgba(22,34,60,.92) 11% 23%,
+      transparent 23%
+    ),
+    linear-gradient(
+      153deg,
+      transparent 0 29%,
+      rgba(15,27,51,.96) 29% 43%,
+      transparent 43%
+    ),
+    linear-gradient(
+      32deg,
+      #071020 0 48%,
+      transparent 48%
+    ) !important;
+
+  clip-path:polygon(
+    0 100%,
+    0 76%,
+    8% 61%,
+    15% 71%,
+    23% 43%,
+    30% 64%,
+    39% 38%,
+    47% 67%,
+    57% 29%,
+    65% 61%,
+    74% 42%,
+    82% 67%,
+    91% 47%,
+    100% 63%,
+    100% 100%
+  ) !important;
+
+  z-index:1 !important;
+  pointer-events:none !important;
+}
+
+/* ---------- HERO CONTENT ---------- */
+
+.hero > *{
+  position:relative;
+  z-index:3;
+}
+
+.hero .eyebrow{
+  color:#8fa2ff !important;
+  font-size:9px !important;
+  letter-spacing:2.1px !important;
+  font-weight:700 !important;
+}
+
+.hero h1{
+  margin:11px 0 9px !important;
+  font-size:39px !important;
+  line-height:1.08 !important;
+  letter-spacing:-1.7px !important;
+  color:#f6f8ff !important;
+}
+
+.hero p{
+  font-size:16px !important;
+  color:#b9c7e4 !important;
+}
+
+.date{
+  padding:10px 13px !important;
+  border-radius:13px !important;
+  color:#b8c3dc !important;
+  background:rgba(8,15,30,.38) !important;
+  border-color:rgba(144,164,219,.17) !important;
+  backdrop-filter:blur(12px) !important;
+}
+
+.hero-quote{
+  right:25px !important;
+  top:24px !important;
+  max-width:240px !important;
+  color:#c9c9e7 !important;
+  font-family:Georgia,serif !important;
+  font-style:italic !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+.hero-motto{
+  color:#aab5df !important;
+}
+
+/* ---------- STATS POSITION ---------- */
+
+.stats{
+  gap:14px !important;
+  margin:0 0 20px !important;
+}
+
+.stat{
+  min-height:96px !important;
+  padding:16px 18px !important;
+  border-radius:15px !important;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(17,27,47,.92),
+      rgba(9,16,29,.96)
+    ) !important;
+  border-color:rgba(139,161,216,.15) !important;
+}
+
+/* ---------- MAIN GRID ---------- */
+
+.dashboard-grid{
+  grid-template-columns:minmax(0,1.63fr) minmax(300px,.72fr) !important;
+  gap:20px !important;
+}
+
+/* ---------- CARD CONSISTENCY ---------- */
+
+.composer-card,
+.radar-card,
+.insight-card,
+.mind-card,
+.extra-features,
+.privacy-center,
+.settings-panel{
+  border-radius:18px !important;
+}
+
+.right-stack{
+  gap:16px !important;
+}
+
+/* ---------- DESKTOP VIEWPORT FIT ---------- */
+
+@media(min-width:1200px){
+  .content{
+    width:min(1275px,calc(100% - 48px)) !important;
+  }
+}
+
+@media(max-width:850px){
+  .sidebar{
+    width:70px !important;
+  }
+
+  .main{
+    margin-left:70px !important;
+  }
+
+  .topbar:after{
+    left:70px;
+  }
+}
+
+@media(max-width:620px){
+  .hero{
+    min-height:235px !important;
+    padding:28px 22px 26px !important;
+  }
+
+  .hero h1{
+    font-size:34px !important;
+  }
+}
+
+
+/* ============================================================
+   SIDEBAR — REFERENCE MATCH
+   This pass intentionally affects ONLY the sidebar.
+   ============================================================ */
+
+.reference-sidebar{
+  width:238px !important;
+  position:fixed !important;
+  inset:0 auto 0 0 !important;
+  z-index:100 !important;
+
+  display:flex !important;
+  flex-direction:column !important;
+
+  padding:27px 14px 20px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      #08111f 0%,
+      #07101d 52%,
+      #060d18 100%
+    ) !important;
+
+  border-right:1px solid rgba(112,141,196,.16) !important;
+
+  box-shadow:
+    12px 0 45px rgba(0,0,0,.16) !important;
+}
+
+.reference-brand{
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+
+  padding:0 8px !important;
+  margin:0 0 37px !important;
+}
+
+.reference-brand .brand-mark{
+  width:30px !important;
+  height:34px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  color:#58dccb !important;
+  font-size:28px !important;
+  line-height:1 !important;
+
+  transform:rotate(-8deg);
+}
+
+.reference-brand .brand-copy{
+  min-width:0 !important;
+}
+
+.reference-brand .logo{
+  padding:0 !important;
+  margin:0 !important;
+
+  color:#f4f7ff !important;
+  font-size:20px !important;
+  line-height:1.05 !important;
+  font-weight:700 !important;
+  letter-spacing:-.55px !important;
+}
+
+.reference-brand .brand-subtitle{
+  margin-top:6px !important;
+
+  color:#8293b1 !important;
+  font-size:11px !important;
+  line-height:1 !important;
+  white-space:nowrap !important;
+}
+
+/* ---------- NAV ---------- */
+
+.reference-nav{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:4px !important;
+}
+
+.reference-nav button{
+  width:100% !important;
+  height:47px !important;
+  min-height:47px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  gap:14px !important;
+
+  padding:0 11px !important;
+
+  border:1px solid transparent !important;
+  border-radius:12px !important;
+
+  background:transparent !important;
+  color:#a7b4ce !important;
+
+  font-size:14px !important;
+  font-weight:500 !important;
+
+  text-align:left !important;
+}
+
+.reference-nav button:before{
+  display:none !important;
+}
+
+.reference-nav .nav-icon{
+  width:25px !important;
+  min-width:25px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  color:#91a6db !important;
+
+  font-size:21px !important;
+  line-height:1 !important;
+}
+
+.reference-nav button:hover{
+  background:rgba(91,115,191,.08) !important;
+  color:#edf2ff !important;
+}
+
+.reference-nav button.active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(82,103,195,.28),
+      rgba(67,87,165,.16)
+    ) !important;
+
+  border-color:rgba(116,136,218,.05) !important;
+
+  color:#f4f7ff !important;
+
+  box-shadow:
+    inset 2px 0 #91a2ff,
+    0 10px 26px rgba(39,57,125,.12) !important;
+}
+
+.reference-nav button.active .nav-icon{
+  color:#76bfff !important;
+}
+
+/* Reference has no visible Settings item. */
+.reference-nav .settings-nav-hidden{
+  display:none !important;
+}
+
+/* ---------- SIDEBAR BOTTOM ---------- */
+
+.reference-side-bottom{
+  margin-top:auto !important;
+  position:static !important;
+}
+
+.reference-privacy{
+  padding:17px 15px 16px !important;
+
+  border-radius:15px !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14,30,51,.96),
+      rgba(7,15,28,.98)
+    ) !important;
+
+  border:1px solid rgba(100,139,191,.29) !important;
+
+  box-shadow:
+    0 18px 42px rgba(0,0,0,.26),
+    inset 0 1px 0 rgba(255,255,255,.025) !important;
+}
+
+.reference-privacy .privacy-mini-head{
+  display:flex !important;
+  align-items:flex-start !important;
+  gap:10px !important;
+}
+
+.reference-privacy .privacy-shield-icon{
+  width:28px !important;
+  height:28px !important;
+  flex:0 0 28px !important;
+
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+
+  border-radius:8px !important;
+
+  color:#5ce4bd !important;
+  background:rgba(66,225,178,.10) !important;
+
+  font-size:19px !important;
+}
+
+.reference-privacy .privacy-mini-head strong{
+  display:block !important;
+
+  color:#edf3ff !important;
+  font-size:14px !important;
+  line-height:1.1 !important;
+}
+
+.reference-privacy .privacy-active{
+  display:block !important;
+  margin-top:5px !important;
+
+  color:#5fe3b5 !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+}
+
+.reference-privacy p{
+  margin:16px 0 14px !important;
+
+  color:#8b9bb5 !important;
+  font-size:11px !important;
+  line-height:1.6 !important;
+}
+
+.reference-privacy .privacy-learn{
+  padding:0 !important;
+  border:0 !important;
+  background:none !important;
+
+  color:#69d9ff !important;
+
+  font-size:11px !important;
+  font-weight:600 !important;
+
+  cursor:pointer !important;
+}
+
+.reference-privacy .privacy-learn span{
+  margin-left:5px !important;
+  font-size:15px !important;
+}
+
+.reference-sidebar .built-with{
+  padding:22px 4px 0 !important;
+
+  display:flex !important;
+  flex-direction:column !important;
+  gap:5px !important;
+}
+
+.reference-sidebar .built-with span{
+  color:#72819a !important;
+  font-size:10px !important;
+}
+
+.reference-sidebar .built-with strong{
+  color:#9ba8c0 !important;
+  font-size:10px !important;
+  font-weight:500 !important;
+}
+
+/* ---------- MAIN OFFSET ONLY ---------- */
+
+.main{
+  margin-left:238px !important;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:850px){
+  .reference-sidebar{
+    width:70px !important;
+    padding-left:9px !important;
+    padding-right:9px !important;
+  }
+
+  .reference-brand{
+    justify-content:center !important;
+    padding:0 !important;
+  }
+
+  .reference-brand .brand-copy,
+  .reference-nav button > span:last-child,
+  .reference-privacy,
+  .reference-sidebar .built-with{
+    display:none !important;
+  }
+
+  .reference-nav button{
+    justify-content:center !important;
+    padding:0 !important;
+  }
+
+  .reference-nav .nav-icon{
+    margin:0 !important;
+  }
+
+  .main{
+    margin-left:70px !important;
+  }
+}
+
+
+/* ============================================================
+   PASS 2 — REFERENCE HERO
+   ONLY HERO.
+   Sidebar and all application functionality remain untouched.
+   ============================================================ */
+
+.reference-hero{
+  position:relative !important;
+  isolation:isolate !important;
+  overflow:hidden !important;
+
+  width:100% !important;
+  height:306px !important;
+  min-height:306px !important;
+
+  margin:0 0 20px !important;
+  padding:0 !important;
+
+  border-radius:0 0 25px 25px !important;
+
+  border:1px solid rgba(117,143,208,.18) !important;
+  border-top:0 !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      #1a2546 0%,
+      #1a2749 25%,
+      #172442 43%,
+      #111d38 65%,
+      #091326 100%
+    ) !important;
+
+  box-shadow:
+    0 25px 65px rgba(0,0,0,.28) !important;
+}
+
+/* ------------------------------------------------------------
+   SKY / ATMOSPHERE
+   ------------------------------------------------------------ */
+
+.reference-hero .hero-sky{
+  position:absolute;
+  inset:0;
+  z-index:0;
+
+  background:
+    radial-gradient(
+      ellipse 550px 230px at 61% 30%,
+      rgba(133,91,145,.30),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 330px 170px at 62% 36%,
+      rgba(239,151,86,.16),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 470px 220px at 18% 5%,
+      rgba(71,75,139,.25),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(84,73,137,.13),
+      transparent 65%
+    );
+
+  pointer-events:none;
+}
+
+/* subtle atmospheric horizon */
+
+.reference-hero .hero-sky:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:58px;
+  height:80px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(79,94,149,.11),
+      transparent
+    );
+
+  filter:blur(14px);
+}
+
+/* ------------------------------------------------------------
+   SUN
+   ------------------------------------------------------------ */
+
+.reference-sun{
+  position:absolute;
+
+  left:61%;
+  top:38px;
+
+  width:150px;
+  height:150px;
+
+  transform:translateX(-50%);
+
+  z-index:2;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,203,132,.04) 0 18%,
+      rgba(255,185,104,.10) 30%,
+      rgba(255,174,94,.15) 46%,
+      rgba(255,165,86,.08) 61%,
+      transparent 74%
+    );
+
+  pointer-events:none;
+}
+
+/* actual sun disc */
+
+.reference-sun span{
+  position:absolute;
+
+  width:58px;
+  height:58px;
+
+  left:46px;
+  top:46px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 37% 34%,
+      #ffe3a6 0%,
+      #ffd080 30%,
+      #f9b565 66%,
+      #f2a55c 100%
+    );
+
+  box-shadow:
+    0 0 15px rgba(255,190,104,.80),
+    0 0 35px rgba(255,178,93,.58),
+    0 0 65px rgba(255,167,86,.35),
+    0 0 105px rgba(255,156,78,.15);
+}
+
+/* ------------------------------------------------------------
+   MOUNTAINS
+   ------------------------------------------------------------ */
+
+.reference-mountains{
+  position:absolute;
+
+  left:-2%;
+  right:-2%;
+
+  pointer-events:none;
+}
+
+/* distant range */
+
+.reference-mountains-back{
+  bottom:46px;
+
+  height:125px;
+
+  z-index:3;
+
+  background:
+    linear-gradient(
+      145deg,
+      transparent 0 13%,
+      rgba(54,61,98,.82) 13% 18%,
+      transparent 18% 26%,
+      rgba(48,57,93,.86) 26% 33%,
+      transparent 33% 41%,
+      rgba(45,54,91,.90) 41% 49%,
+      transparent 49%
+    );
+
+  clip-path:polygon(
+    0 100%,
+    0 72%,
+    7% 58%,
+    13% 66%,
+    19% 47%,
+    26% 66%,
+    33% 42%,
+    40% 63%,
+    47% 29%,
+    54% 60%,
+    61% 42%,
+    68% 65%,
+    76% 47%,
+    84% 68%,
+    92% 51%,
+    100% 64%,
+    100% 100%
+  );
+}
+
+/* middle range */
+
+.reference-mountains-mid{
+  bottom:20px;
+
+  height:105px;
+
+  z-index:4;
+
+  background:
+    linear-gradient(
+      180deg,
+      #172442 0%,
+      #101c36 100%
+    );
+
+  clip-path:polygon(
+    0 100%,
+    0 76%,
+    8% 67%,
+    16% 75%,
+    25% 51%,
+    34% 73%,
+    43% 43%,
+    51% 68%,
+    59% 51%,
+    67% 73%,
+    76% 47%,
+    84% 69%,
+    92% 54%,
+    100% 67%,
+    100% 100%
+  );
+}
+
+/* foreground */
+
+.reference-mountains-front{
+  bottom:-1px;
+
+  height:78px;
+
+  z-index:5;
+
+  background:
+    linear-gradient(
+      180deg,
+      #0a1529,
+      #071021
+    );
+
+  clip-path:polygon(
+    0 100%,
+    0 66%,
+    8% 54%,
+    15% 68%,
+    23% 57%,
+    32% 72%,
+    42% 48%,
+    51% 69%,
+    60% 54%,
+    70% 72%,
+    80% 52%,
+    89% 68%,
+    100% 57%,
+    100% 100%
+  );
+}
+
+/* ------------------------------------------------------------
+   HERO COPY
+   ------------------------------------------------------------ */
+
+.reference-hero-copy{
+  position:absolute;
+
+  left:39px;
+  top:84px;
+
+  z-index:10;
+}
+
+.reference-hero-copy .eyebrow{
+  color:#91a6ff !important;
+
+  font-size:9px !important;
+  line-height:1 !important;
+
+  font-weight:700 !important;
+  letter-spacing:2px !important;
+}
+
+.reference-hero-copy h1{
+  margin:11px 0 0 !important;
+
+  color:#f7f8ff !important;
+
+  font-size:38px !important;
+  line-height:1.08 !important;
+
+  font-weight:700 !important;
+
+  letter-spacing:-1.7px !important;
+}
+
+.reference-hero-copy .hero-wave{
+  display:inline-block;
+
+  margin-left:3px;
+}
+
+.reference-hero-copy p{
+  margin:10px 0 0 !important;
+
+  color:#c0cce5 !important;
+
+  font-size:16px !important;
+  line-height:1.35 !important;
+}
+
+/* ------------------------------------------------------------
+   DATE
+   ------------------------------------------------------------ */
+
+.reference-hero .reference-date{
+  position:absolute !important;
+
+  right:39px;
+  bottom:77px;
+
+  z-index:10;
+
+  display:block !important;
+
+  padding:9px 13px !important;
+
+  border:1px solid rgba(138,160,214,.20) !important;
+  border-radius:12px !important;
+
+  background:rgba(8,15,30,.38) !important;
+
+  color:#bbc6dd !important;
+
+  font-size:10px !important;
+
+  backdrop-filter:blur(10px);
+}
+
+/* ------------------------------------------------------------
+   MOTTO
+   ------------------------------------------------------------ */
+
+.reference-hero .reference-hero-motto{
+  position:absolute !important;
+
+  right:39px !important;
+  top:84px !important;
+
+  z-index:10 !important;
+
+  color:#a3add7 !important;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif !important;
+
+  font-size:21px !important;
+  line-height:1.10 !important;
+
+  font-style:italic !important;
+
+  text-align:right !important;
+
+  background:none !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+/* ------------------------------------------------------------
+   OLD QUOTE — hidden for now.
+   It will be recreated in the TOPBAR pass.
+   ------------------------------------------------------------ */
+
+.reference-hero .reference-hero-quote{
+  display:none !important;
+}
+
+/* ------------------------------------------------------------
+   Make sure mountain layers don't interfere with content.
+   ------------------------------------------------------------ */
+
+.reference-hero > .hero-sky,
+.reference-hero > .reference-sun,
+.reference-hero > .reference-mountains{
+  pointer-events:none !important;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media(max-width:900px){
+
+  .reference-hero{
+    height:310px !important;
+    min-height:310px !important;
+  }
+
+  .reference-hero-copy{
+    left:27px;
+  }
+
+  .reference-hero .reference-hero-motto{
+    right:27px !important;
+    font-size:17px !important;
+  }
+
+  .reference-sun{
+    left:64%;
+  }
+}
+
+@media(max-width:650px){
+
+  .reference-hero{
+    height:360px !important;
+    min-height:360px !important;
+  }
+
+  .reference-hero-copy{
+    left:22px;
+    top:75px;
+  }
+
+  .reference-hero-copy h1{
+    font-size:31px !important;
+  }
+
+  .reference-hero .reference-hero-motto{
+    display:none !important;
+  }
+
+  .reference-hero .reference-date{
+    right:22px;
+    bottom:25px;
+  }
+}
+
+
+
+/* =========================================================
+   PASS 3 — REFERENCE HEADER + HERO STATS
+   ========================================================= */
+
+.reference-topbar{
+  position:absolute !important;
+  top:0;
+  left:0;
+  right:0;
+  height:82px;
+  z-index:40;
+  display:flex;
+  align-items:center;
+  padding:0 28px !important;
+  background:linear-gradient(
+    to bottom,
+    rgba(5,10,22,.28),
+    rgba(5,10,22,0)
+  ) !important;
+  border-bottom:0 !important;
+  pointer-events:none;
+}
+
+.reference-topbar > *{
+  pointer-events:auto;
+}
+
+.reference-topbar-spacer{
+  flex:1;
+}
+
+.reference-top-actions{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.reference-quote-pill{
+  height:46px;
+  padding:0 19px;
+  border-radius:25px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#f3f5ff;
+  font-size:14px;
+  white-space:nowrap;
+  background:rgba(27,31,66,.48);
+  border:1px solid rgba(132,148,219,.24);
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  backdrop-filter:blur(14px);
+}
+
+.quote-mark{
+  font-size:17px;
+  opacity:.9;
+}
+
+.reference-notification{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  border:1px solid rgba(132,148,219,.25);
+  background:rgba(17,25,53,.55);
+  color:#dce5ff;
+  font-size:20px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  position:relative;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  backdrop-filter:blur(14px);
+}
+
+.notification-dot{
+  position:absolute;
+  width:6px;
+  height:6px;
+  right:11px;
+  top:9px;
+  border-radius:50%;
+  background:#ff8fc1;
+  box-shadow:0 0 10px rgba(255,143,193,.8);
+}
+
+.reference-profile{
+  min-width:145px;
+  height:46px;
+  padding:4px 12px 4px 6px;
+  border-radius:25px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#f4f6ff;
+  background:rgba(12,20,43,.56);
+  border:1px solid rgba(132,148,219,.25);
+  cursor:pointer;
+  backdrop-filter:blur(14px);
+}
+
+.reference-avatar{
+  width:36px !important;
+  height:36px !important;
+  border-radius:50% !important;
+  display:grid !important;
+  place-items:center !important;
+  background:linear-gradient(145deg,#d8dde8,#737b8f) !important;
+  color:#172038 !important;
+  font-weight:800 !important;
+  border:2px solid rgba(255,255,255,.18);
+}
+
+.reference-profile-name{
+  font-size:14px;
+  font-weight:700;
+}
+
+.profile-chevron{
+  margin-left:auto;
+  font-size:18px;
+  color:#b6c1df;
+}
+
+.reference-hidden-email{
+  display:none !important;
+}
+
+.reference-signout{
+  display:none !important;
+}
+
+/* HERO */
+.reference-hero{
+  min-height:300px !important;
+  height:300px !important;
+  position:relative !important;
+  overflow:visible !important;
+  border-radius:0 0 26px 26px !important;
+  margin-bottom:0 !important;
+  padding:0 !important;
+}
+
+.reference-hero .reference-hero-copy{
+  position:absolute !important;
+  left:44px !important;
+  top:78px !important;
+  z-index:8 !important;
+}
+
+.reference-hero .reference-hero-copy h1{
+  margin:7px 0 7px !important;
+  font-size:38px !important;
+  line-height:1.05 !important;
+  letter-spacing:-1.7px !important;
+}
+
+.reference-hero .reference-hero-copy p{
+  font-size:20px !important;
+  margin:0 !important;
+  color:#c0d0f4 !important;
+}
+
+.reference-hero .reference-date{
+  right:46px !important;
+  bottom:174px !important;
+  z-index:9 !important;
+}
+
+.reference-hero .reference-hero-quote{
+  display:none !important;
+}
+
+.reference-hero .reference-hero-motto{
+  right:48px !important;
+  top:96px !important;
+  z-index:8 !important;
+}
+
+/* Hero stats live INSIDE the hero now */
+.reference-stats{
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:-1px !important;
+  z-index:15 !important;
+
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:15px !important;
+  padding:0 18px !important;
+}
+
+.reference-stat-card{
+  min-height:96px;
+  border-radius:16px 16px 0 0;
+  border:1px solid rgba(119,139,202,.30);
+  border-bottom:0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(13,24,51,.88),
+      rgba(13,20,43,.78)
+    );
+  box-shadow:
+    0 -10px 30px rgba(0,0,0,.10),
+    inset 0 1px 0 rgba(255,255,255,.045);
+  backdrop-filter:blur(14px);
+
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px 15px;
+  position:relative;
+  overflow:hidden;
+}
+
+.reference-stat-card:after{
+  content:"";
+  position:absolute;
+  width:85px;
+  height:85px;
+  right:-38px;
+  bottom:-50px;
+  border-radius:50%;
+  background:rgba(91,103,255,.13);
+  filter:blur(12px);
+}
+
+.reference-stat-icon{
+  flex:0 0 46px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  font-weight:700;
+  background:rgba(92,113,190,.20);
+  border:1px solid rgba(135,155,229,.13);
+}
+
+.reflection-icon{
+  color:#86a9ff;
+  background:rgba(76,105,190,.22);
+}
+
+.theme-icon{
+  color:#ffb26f;
+  background:rgba(207,108,49,.24);
+}
+
+.question-icon{
+  color:#ff7fa8;
+  background:rgba(190,71,112,.22);
+}
+
+.mood-icon{
+  color:#ffd95d;
+  background:rgba(205,155,34,.24);
+}
+
+.reference-stat-copy{
+  min-width:0;
+}
+
+.reference-stat-value{
+  font-size:23px;
+  line-height:1.05;
+  font-weight:800;
+  color:#f6f7ff;
+}
+
+.reference-stat-label,
+.reference-mood-label{
+  margin-top:5px;
+  font-size:13px;
+  color:#edf0ff;
+}
+
+.reference-stat-meta{
+  margin-top:5px;
+  font-size:11px;
+  color:#a0afd1;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.reference-stat-meta.positive{
+  color:#6cf0bd;
+}
+
+.reference-mood-value{
+  margin-top:5px;
+  font-size:16px;
+  font-weight:800;
+  color:#57efb1;
+}
+
+.mood-stat-card{
+  padding-right:76px;
+}
+
+.mood-sparkline{
+  position:absolute;
+  right:13px;
+  top:30px;
+  width:68px;
+  height:38px;
+  color:#5bf1bd;
+  overflow:visible;
+}
+
+/* Because stats now belong to hero, remove the old vertical gap */
+#write > .stats{
+  display:none !important;
+}
+
+.reference-hero + .stats{
+  display:none !important;
+}
+
+/* Dashboard starts immediately after the hero */
+.reference-hero + .dashboard-grid{
+  margin-top:0 !important;
+}
+
+/* Keep main content from reserving a separate topbar row */
+.main > .topbar + .content{
+  padding-top:0 !important;
+}
+
+/* Desktop reference sizing */
+@media(min-width:1051px){
+  .content{
+    padding-top:0 !important;
+  }
+
+  #write{
+    padding-top:0 !important;
+  }
+}
+
+@media(max-width:1100px){
+  .reference-quote-pill{
+    display:none;
+  }
+
+  .reference-stats{
+    gap:9px !important;
+    padding:0 12px !important;
+  }
+
+  .reference-stat-card{
+    padding:11px;
+  }
+
+  .reference-stat-icon{
+    flex-basis:40px;
+    width:40px;
+    height:40px;
+  }
+}
+
+@media(max-width:760px){
+  .reference-topbar{
+    padding:0 14px !important;
+  }
+
+  .reference-profile{
+    min-width:auto;
+  }
+
+  .reference-profile-name{
+    display:none;
+  }
+
+  .reference-hero{
+    height:auto !important;
+    min-height:500px !important;
+  }
+
+  .reference-hero .reference-hero-copy{
+    left:24px !important;
+    top:82px !important;
+  }
+
+  .reference-hero .reference-hero-copy h1{
+    font-size:31px !important;
+  }
+
+  .reference-stats{
+    position:absolute !important;
+    grid-template-columns:1fr 1fr !important;
+    bottom:0 !important;
+  }
+
+  .reference-stat-card{
+    border-bottom:1px solid rgba(119,139,202,.30);
+    border-radius:15px;
+  }
+}
+
 </style>
 </head>
 
@@ -1367,34 +3739,130 @@ footer button{margin-top:10px}
 
 <div id="app" class="shell hidden">
 
-<aside class="sidebar">
-  <div class="logo">Journal</div>
+<aside class="sidebar reference-sidebar">
 
-  <nav class="nav">
-    <button class="active" data-section="write">Home</button>
-    <button data-section="write">Write</button>
-    <button data-section="patterns">Pattern Radar</button>
-    <button data-section="history">Timeline</button>
-    <button data-section="privacy">Privacy</button>
-    <button data-section="settings">Settings</button>
+  <div class="brand reference-brand">
+
+    <div class="brand-mark" aria-hidden="true">
+      ◢
+    </div>
+
+    <div class="brand-copy">
+      <div class="logo">Journal</div>
+      <div class="brand-subtitle">
+        Your private AI space
+      </div>
+    </div>
+
+  </div>
+
+  <nav class="nav reference-nav">
+
+    <button class="active" data-section="write">
+      <span class="nav-icon" aria-hidden="true">⌂</span>
+      <span>Home</span>
+    </button>
+
+    <button data-section="write">
+      <span class="nav-icon" aria-hidden="true">✎</span>
+      <span>Write</span>
+    </button>
+
+    <button data-section="patterns">
+      <span class="nav-icon" aria-hidden="true">▥</span>
+      <span>Pattern Radar</span>
+    </button>
+
+    <button data-section="history">
+      <span class="nav-icon" aria-hidden="true">◷</span>
+      <span>Timeline</span>
+    </button>
+
+    <button data-section="privacy">
+      <span class="nav-icon" aria-hidden="true">♢</span>
+      <span>Privacy</span>
+    </button>
+
+    <!-- Kept for functionality; hidden visually to match reference. -->
+    <button
+      data-section="settings"
+      class="settings-nav-hidden"
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <span class="nav-icon" aria-hidden="true">⚙</span>
+      <span>Settings</span>
+    </button>
+
   </nav>
 
-  <div class="side-bottom">
-    <div class="privacy-mini">
-      <div><span class="dot"></span><strong>Privacy Shield active</strong></div>
-      <p>Personal details are redacted before Gemini sees your words.</p>
+  <div class="side-bottom reference-side-bottom">
+
+    <div class="privacy-mini reference-privacy">
+
+      <div class="privacy-mini-head">
+
+        <span
+          class="privacy-shield-icon"
+          aria-hidden="true"
+        >♢</span>
+
+        <div>
+          <strong>Privacy Shield</strong>
+          <span class="privacy-active">Active</span>
+        </div>
+
+      </div>
+
+      <p>
+        Your personal details are detected and redacted
+        before Gemini sees your words.
+      </p>
+
+      <button
+        type="button"
+        class="privacy-learn"
+        onclick="openPrivacyCenter()"
+      >
+        Learn more <span aria-hidden="true">→</span>
+      </button>
+
     </div>
+
+    <div class="built-with">
+      <span>Built with</span>
+      <strong>Google AI · Firebase · Cloud Run</strong>
+    </div>
+
   </div>
+
 </aside>
 
 <main class="main">
 
-<header class="topbar">
-  <div class="user">
-    <div class="avatar" id="avatar">J</div>
-    <span id="user-email"></span>
+<header class="topbar reference-topbar">
+  <div class="reference-topbar-spacer"></div>
+
+  <div class="reference-top-actions">
+    <div class="reference-quote-pill">
+      <span class="quote-mark">◔</span>
+      <span>"A journal today, a better you tomorrow."</span>
+    </div>
+
+    <button class="reference-notification" type="button" aria-label="Notifications">
+      ♧
+      <span class="notification-dot"></span>
+    </button>
+
+    <button class="reference-profile" type="button" aria-label="Profile">
+      <div class="avatar reference-avatar" id="avatar">N</div>
+      <span class="reference-profile-name">Naman</span>
+      <span class="profile-chevron">⌄</span>
+    </button>
+
+    <span id="user-email" class="reference-hidden-email"></span>
+    <button class="signout hidden reference-signout" id="signout">Sign out</button>
   </div>
-  <button class="signout hidden" id="signout">Sign out</button>
 </header>
 
 <div class="content">
@@ -1411,43 +3879,108 @@ footer button{margin-top:10px}
 
   <section id="write">
 
-    <div class="hero">
-      <div>
-        <div class="eyebrow">YOUR PRIVATE THINKING SPACE</div>
-        <h1>Good evening, Naman 👋</h1>
-        <p>A clearer mind builds a brighter tomorrow.</p>
-      </div>
-      <div class="date" id="today"></div>
-      <div class="hero-quote">✦ “A journal today, a better you tomorrow.”</div>
-      <div class="hero-motto">Progress<br>over Perfection ♡</div>
-    </div>
+    <div class="hero reference-hero">
 
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-icon">✎</div>
-        <div class="stat-value" id="entry-count">—</div>
-        <div class="stat-label">Reflections</div>
-        <div class="stat-meta">Private journal</div>
+      <!-- Atmospheric sky -->
+      <div class="hero-sky"></div>
+
+      <!-- Sunset -->
+      <div class="reference-sun" aria-hidden="true">
+        <span></span>
       </div>
-      <div class="stat">
-        <div class="stat-icon">✦</div>
-        <div class="stat-value">AI</div>
-        <div class="stat-label">Thinking partner</div>
-        <div class="stat-meta">Powered by Gemini</div>
+
+      <!-- Distant mountain range -->
+      <div class="reference-mountains reference-mountains-back"
+           aria-hidden="true"></div>
+
+      <!-- Middle mountain range -->
+      <div class="reference-mountains reference-mountains-mid"
+           aria-hidden="true"></div>
+
+      <!-- Dark foreground -->
+      <div class="reference-mountains reference-mountains-front"
+           aria-hidden="true"></div>
+
+      <!-- Hero copy -->
+      <div class="reference-hero-copy">
+
+        <div class="eyebrow">
+          YOUR PRIVATE THINKING SPACE
+        </div>
+
+        <h1>
+          Good evening, Naman <span class="hero-wave">👋</span>
+        </h1>
+
+        <p>
+          A clearer mind builds a brighter tomorrow.
+        </p>
+
       </div>
-      <div class="stat">
-        <div class="stat-icon">◉</div>
-        <div class="stat-value">100%</div>
-        <div class="stat-label">Privacy Shield</div>
-        <div class="stat-meta">Protection active</div>
+
+      <!-- Date -->
+      <div class="date reference-date" id="today"></div>
+
+      <!-- Existing quote preserved -->
+      <div class="hero-quote reference-hero-quote">
+        ✦ “A journal today, a better you tomorrow.”
       </div>
-      <div class="stat">
-        <div class="stat-icon">◎</div>
-        <div class="stat-value">∞</div>
-        <div class="stat-label">Ideas & reflections</div>
-        <div class="stat-meta">Your space</div>
+
+      <!-- Decorative motto -->
+      <div class="hero-motto reference-hero-motto">
+        Progress<br>
+        over Perfection ♡
       </div>
-    </div>
+
+    
+          <div class="reference-stats">
+            <div class="reference-stat-card">
+              <div class="reference-stat-icon reflection-icon">✎</div>
+              <div class="reference-stat-copy">
+                <div class="reference-stat-value" id="entry-count">—</div>
+                <div class="reference-stat-label">Reflections</div>
+                <div class="reference-stat-meta positive">↑ +3 this week</div>
+              </div>
+            </div>
+
+            <div class="reference-stat-card">
+              <div class="reference-stat-icon theme-icon">♨</div>
+              <div class="reference-stat-copy">
+                <div class="reference-stat-value">3</div>
+                <div class="reference-stat-label">Key themes</div>
+                <div class="reference-stat-meta">career, growth, balance</div>
+              </div>
+            </div>
+
+            <div class="reference-stat-card">
+              <div class="reference-stat-icon question-icon">◎</div>
+              <div class="reference-stat-copy">
+                <div class="reference-stat-value">2</div>
+                <div class="reference-stat-label">Open questions</div>
+                <div class="reference-stat-meta">You're exploring</div>
+              </div>
+            </div>
+
+            <div class="reference-stat-card mood-stat-card">
+              <div class="reference-stat-icon mood-icon">☺</div>
+              <div class="reference-stat-copy">
+                <div class="reference-mood-label">Mood trend</div>
+                <div class="reference-mood-value">Improving</div>
+                <div class="reference-stat-meta positive">↑ +24%</div>
+              </div>
+              <svg class="mood-sparkline" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M2 31 C14 27, 17 30, 28 20 S45 18, 54 22 S68 13, 76 16 S88 5, 98 8"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+
+    
 
     <div class="dashboard-grid">
 
@@ -2518,5 +5051,6 @@ document.addEventListener("keydown",(e)=>{
 });
 </script>
 
+<script src="/static/journal-functionality.js"></script>
 </body>
 </html>
