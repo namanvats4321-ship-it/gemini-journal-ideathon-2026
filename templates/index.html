@@ -33,12 +33,78 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  .hidden { display: none !important; }
+
+  /* AUTH GATE */
+  #gate {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at 50% 35%, rgba(120, 92, 245, 0.15), transparent 45%), #0a0e17;
+    padding: 20px;
+  }
+  .gate-inner {
+    width: min(580px, 94vw);
+    padding: 48px;
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    background: rgba(15, 20, 32, 0.85);
+    box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+    backdrop-filter: blur(20px);
+    text-align: center;
+  }
+  .gate-logo {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .gate-logo svg { width: 32px; height: 32px; color: #5be3c0; }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .gate-inner h1 {
+    font-size: 40px;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+  }
+  .gate-inner h1 em { font-style: italic; color: #a9b2ff; font-family: Georgia, serif; }
+  .gate-inner p { color: var(--text-dim); line-height: 1.6; font-size: 14.5px; margin-bottom: 28px; }
+  .btn-google {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(90deg, #5b6bff, #8b5bff);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(91, 107, 255, 0.3);
+    transition: all 0.2s;
+  }
+  .btn-google:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  #gate-error { color: #ff6d7d; font-size: 12px; margin-top: 14px; }
+
+  /* APP SHELL */
   .app {
     display: flex;
     min-height: 100vh;
   }
 
-  /* ---------- SIDEBAR ---------- */
+  /* SIDEBAR */
   .sidebar {
     width: var(--sidebar-w);
     flex: 0 0 var(--sidebar-w);
@@ -73,6 +139,7 @@
     text-decoration: none;
     font-size: 15px;
     font-weight: 500;
+    cursor: pointer;
   }
   .nav a svg { width: 20px; height: 20px; flex: 0 0 auto; }
   .nav a.active {
@@ -96,12 +163,12 @@
   .shield-head .t { font-weight: 700; font-size: 14px; }
   .shield-head .s { font-size: 12px; color: var(--green); }
   .shield-card p { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; }
-  .shield-card .learn { font-size: 12px; color: #cdd5e6; font-weight: 600; }
+  .shield-card .learn { font-size: 12px; color: #cdd5e6; font-weight: 600; cursor: pointer; }
 
   .built { font-size: 11px; color: var(--text-mute); padding: 0 6px; }
   .built .line2 { color: #7f8ba3; }
 
-  /* ---------- MAIN ---------- */
+  /* MAIN COLUMN */
   .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 
   .content {
@@ -112,7 +179,6 @@
   /* Hero banner */
   .hero {
     position: relative;
-    border-radius: 0 0 0 0;
     margin: 0 -26px 22px;
     padding: 26px 34px 30px;
     background:
@@ -155,12 +221,17 @@
     display: flex; align-items: center; gap: 10px;
     background: rgba(12,16,26,.55);
     border: 1px solid rgba(255,255,255,.14);
-    padding: 5px 12px 5px 5px;
+    padding: 5px 14px 5px 6px;
     border-radius: 999px;
+    cursor: pointer;
   }
-  .user-chip img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
-  .user-chip .name { font-weight: 600; }
-  .user-chip .caret { opacity: .7; }
+  .user-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: linear-gradient(135deg,#5b6bff,#8b5bff);
+    color: #fff; font-weight: 700; font-size: 13px;
+  }
+  .user-chip .name { font-weight: 600; font-size: 13.5px; }
 
   .greeting {
     position: relative; z-index: 2;
@@ -271,10 +342,10 @@
     padding: 9px 14px; border-radius: 999px;
     background: #0d1220; border: 1px solid #232c40;
     color: var(--text-dim); font-size: 13px; font-weight: 500; cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
   }
   .chip-btn.active {
-    background: #1e2942;
+    background: #1f2742;
     color: #fff;
     border-color: #5b6bff;
   }
@@ -301,15 +372,21 @@
     color: #fff; font-weight: 700; font-size: 16px;
     border: none; border-radius: 14px; padding: 15px 24px; cursor: pointer;
     white-space: nowrap;
-    transition: opacity 0.2s ease;
   }
   .reflect-btn:disabled { opacity: 0.6; cursor: not-allowed; }
   .reflect-btn .arrow { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,.2); display: grid; place-items: center; }
   .reflect-btn svg { width: 16px; height: 16px; }
 
-  /* Section header generic */
+  /* Pattern Radar */
+  .radar { margin-top: 22px; padding: 20px 22px 22px; }
   .sec-head { display: flex; align-items: center; gap: 10px; }
   .sec-head .h { font-size: 20px; font-weight: 700; }
+  .radar-icon {
+    width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
+    background: rgba(90,120,255,.16); color: #7f9bff;
+  }
+  .radar-icon svg { width: 18px; height: 18px; }
+  .radar-sub { color: var(--text-dim); font-weight: 500; font-size: 14px; }
   .view-all {
     margin-left: auto; display: flex; align-items: center; gap: 8px;
     background: #0d1220; border: 1px solid #232c40; color: var(--text-dim);
@@ -317,14 +394,6 @@
   }
   .view-all svg { width: 14px; height: 14px; }
 
-  /* Pattern Radar (main) */
-  .radar { margin-top: 22px; padding: 20px 22px 22px; }
-  .radar-icon {
-    width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
-    background: rgba(90,120,255,.16); color: #7f9bff;
-  }
-  .radar-icon svg { width: 18px; height: 18px; }
-  .radar-sub { color: var(--text-dim); font-weight: 500; font-size: 14px; }
   .radar-body { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; margin-top: 18px; }
   .radar-left {
     background: #0d1220; border: 1px solid #212a3d; border-radius: 16px;
@@ -390,13 +459,13 @@
   .lg-row .lg-val { margin-left: auto; font-weight: 700; }
   .glance-foot {
     margin-top: 16px; padding-top: 14px; border-top: 1px solid #1a2233;
-    color: #7fa8ff; font-size: 13px; text-align: center; font-weight: 600;
+    color: #7fa8ff; font-size: 13px; text-align: center; font-weight: 600; cursor: pointer;
   }
 
   .recent { padding: 20px 22px; }
-  .recent .rhead { display: flex; align-items: center; margin-bottom: 4px; }
+  .recent .rhead { display: flex; align-items: center; margin-bottom: 10px; }
   .recent .rhead .t { font-size: 18px; font-weight: 700; }
-  .recent .rhead .va { margin-left: auto; color: #7fa8ff; font-size: 13px; font-weight: 600; display:flex; align-items:center; gap:6px; }
+  .recent .rhead .va { margin-left: auto; color: #7fa8ff; font-size: 13px; font-weight: 600; display:flex; align-items:center; gap:6px; cursor: pointer; }
   .recent .rhead .va svg { width: 14px; height: 14px; }
   .refl { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid #171f2e; }
   .refl:last-child { border-bottom: none; padding-bottom: 0; }
@@ -421,6 +490,51 @@
   .banner .keep { margin-left: auto; color: #7fa8ff; font-weight: 700; display: flex; align-items: center; gap: 8px; }
   .banner .keep svg { width: 16px; height: 16px; }
 
+  /* MODALS & POPUPS */
+  .prompt-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    display: none; align-items: center; justify-content: center;
+    padding: 24px; background: rgba(1, 5, 10, 0.78); backdrop-filter: blur(12px);
+  }
+  .prompt-overlay.show { display: flex; }
+  .prompt-modal {
+    width: min(600px, 100%);
+    border: 1px solid var(--card-border);
+    border-radius: 22px;
+    padding: 26px;
+    background: #0f1523;
+    box-shadow: 0 30px 100px rgba(0,0,0,.6);
+  }
+  .prompt-modal-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .prompt-modal-head h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .prompt-modal-head p { font-size: 13px; color: var(--text-dim); }
+  .prompt-close {
+    width: 32px; height: 32px; border-radius: 50%; border: 1px solid #232c40;
+    background: #141b2b; color: #9aa6bd; font-size: 18px; cursor: pointer;
+  }
+  .prompt-list { display: grid; gap: 10px; }
+  .prompt-option {
+    width: 100%; text-align: left; padding: 14px 16px;
+    background: #131b2c; border: 1px solid #232c40; border-radius: 14px;
+    color: #e8ecf4; font-size: 14px; cursor: pointer; transition: all 0.2s;
+  }
+  .prompt-option:hover { border-color: #5b6bff; background: #19233a; transform: translateX(3px); }
+  .prompt-option span { display: block; font-size: 11px; color: var(--text-mute); margin-top: 4px; }
+
+  /* VOICE LISTENING BADGE */
+  .voice-listening {
+    position: fixed; left: 50%; bottom: 30px; transform: translateX(-50%);
+    z-index: 10000; padding: 14px 22px; border-radius: 999px;
+    background: #0f1628; border: 1px solid #5b6bff; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    display: none; align-items: center; gap: 14px;
+  }
+  .voice-listening.show { display: flex; }
+  .voice-dot {
+    width: 12px; height: 12px; border-radius: 50%; background: #35d07f;
+    box-shadow: 0 0 12px #35d07f; animation: pulse 1.2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { transform: scale(0.9); opacity: 0.8; } 50% { transform: scale(1.2); opacity: 1; } }
+
   @media (max-width: 1200px) {
     .grid { grid-template-columns: 1fr; }
     .right-col { flex-direction: row; flex-wrap: wrap; }
@@ -430,7 +544,35 @@
 </style>
 </head>
 <body>
-<div class="app">
+
+<!-- AUTH GATE (If logged out) -->
+<section id="gate">
+  <div class="gate-inner">
+    <div class="gate-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 20A7 7 0 0 1 4 13c0-6 8-9 8-9s8 3 8 9a7 7 0 0 1-7 7Z"/>
+        <path d="M12 20V8"/>
+      </svg>
+      Journal
+    </div>
+    <div class="eyebrow">Private AI Thinking Space</div>
+    <h1>Think clearly.<br><em>Keep it yours.</em></h1>
+    <p>A private space to reflect out loud with Gemini — designed to help you organize thoughts while redacting personal details automatically.</p>
+    <button class="btn-google" id="signin">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+      </svg>
+      Continue with Google
+    </button>
+    <div id="gate-error"></div>
+  </div>
+</section>
+
+<!-- MAIN APP (Shown when logged in) -->
+<div class="app hidden" id="app">
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="brand">
@@ -445,25 +587,25 @@
     </div>
 
     <nav class="nav">
-      <a href="#" class="active">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+      <a class="active" data-section="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
         Home
       </a>
-      <a href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+      <a data-section="write">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
         Write
       </a>
-      <a href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M22 20H2"/></svg>
+      <a id="nav-radar" data-section="patterns">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-6"/><path d="M22 20H2"/></svg>
         Pattern Radar
       </a>
-      <a href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <a data-section="recent-reflections">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         Timeline
       </a>
-      <a href="#">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V6Z"/></svg>
-        Privacy
+      <a id="signout-btn" style="color:#ff6d7d; margin-top:14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
       </a>
     </nav>
 
@@ -471,7 +613,7 @@
 
     <div class="shield-card">
       <div class="shield-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>
         <div>
           <div class="t">Privacy Shield</div>
           <div class="s">Active</div>
@@ -491,60 +633,59 @@
   <main class="main">
     <div class="content">
       <!-- HERO -->
-      <section class="hero">
+      <section class="hero" id="home">
         <div class="hero-top">
           <div class="search-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10a7 7 0 0 1-14 0"/><path d="M12 19v3"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10a7 7 0 0 1-14 0"/><path d="M12 19v3"/></svg>
             "A journal today, a better you tomorrow."
           </div>
           <div class="bell">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
           </div>
           <div class="user-chip">
-            <img src="https://i.pravatar.cc/80?img=13" alt="Naman avatar" />
-            <span class="name">Naman</span>
-            <svg class="caret" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <div class="user-avatar" id="avatar-initial">J</div>
+            <span class="name" id="user-display-name">You</span>
           </div>
         </div>
 
         <div class="quote-script">Progress<br>over Perfection ♡</div>
 
-        <h1 class="greeting">Good evening, Naman 👋</h1>
+        <h1 class="greeting">Good evening, <span id="greeting-name">You</span> 👋</h1>
         <p class="greeting-sub">A clearer mind builds a brighter tomorrow.</p>
       </section>
 
       <!-- STAT CARDS -->
       <section class="stats">
         <div class="stat">
-          <div class="icon ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+          <div class="icon ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
           <div>
-            <div class="big">7</div>
+            <div class="big" id="entry-count">0</div>
             <div class="lbl">Reflections</div>
-            <div class="meta">↑ +3 this week</div>
+            <div class="meta">Private journal</div>
           </div>
         </div>
         <div class="stat">
           <div class="icon ic-orange"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2s4 4 4 8a4 4 0 0 1-8 0c0-1 .5-2 .5-2S8 11 8 13a4 4 0 0 0 8 0c0-5-4-11-4-11Z"/></svg></div>
           <div>
-            <div class="big">3</div>
-            <div class="lbl">Key themes</div>
-            <div class="meta dim">career, growth, balance</div>
+            <div class="big">AI</div>
+            <div class="lbl">Thinking partner</div>
+            <div class="meta dim">Powered by Gemini</div>
           </div>
         </div>
         <div class="stat">
-          <div class="icon ic-pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></div>
+          <div class="icon ic-pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></div>
           <div>
-            <div class="big">2</div>
-            <div class="lbl">Open questions</div>
-            <div class="meta dim">You're exploring</div>
+            <div class="big">100%</div>
+            <div class="lbl">Privacy Shield</div>
+            <div class="meta dim">Protection active</div>
           </div>
         </div>
         <div class="stat mood">
-          <div class="icon ic-yellow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg></div>
+          <div class="icon ic-yellow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg></div>
           <div class="mid">
             <div class="mood-lbl">Mood trend</div>
             <div class="mood-big">Improving</div>
-            <div class="mood-up">↑ +24%</div>
+            <div class="mood-up">↑ Active</div>
           </div>
           <svg class="spark" viewBox="0 0 78 40" preserveAspectRatio="none" fill="none">
             <path d="M2 34 C12 30 16 26 24 27 C32 28 34 20 42 16 C50 12 56 8 76 4" stroke="#35d07f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -554,103 +695,102 @@
 
       <!-- BODY GRID -->
       <div class="grid">
-        <!-- LEFT MAIN COLUMN -->
+        <!-- LEFT COLUMN -->
         <div class="left-col">
           <!-- COMPOSER -->
-          <section class="card composer">
+          <section class="card composer" id="write">
             <div class="composer-tabs">
-              <button class="tab active">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v4M3 5h4M6 17v4M4 19h4"/><path d="M13 3 15.5 8.5 21 11l-5.5 2.5L13 19l-2.5-5.5L5 11l5.5-2.5Z"/></svg>
+              <button class="tab active" id="tab-write">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3v4M3 5h4M6 17v4M4 19h4"/><path d="M13 3 15.5 8.5 21 11l-5.5 2.5L13 19l-2.5-5.5L5 11l5.5-2.5Z"/></svg>
                 Write &amp; Reflect
               </button>
-              <button class="tab">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/></svg>
+              <button class="tab" id="tab-prompts">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/></svg>
                 Guided Prompts
               </button>
-              <button class="tab">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10a7 7 0 0 1-14 0"/><path d="M12 19v3"/></svg>
+              <button class="tab" id="tab-voice">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10a7 7 0 0 1-14 0"/><path d="M12 19v3"/></svg>
                 Voice Journal
               </button>
               <span class="secure">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
                 Private · Secure · Just for You
               </span>
             </div>
 
-            <textarea id="entry" maxlength="5000" placeholder="What's on your mind today?
-Share your thoughts, questions, wins, or anything you're feeling..."></textarea>
+            <textarea id="entry" maxlength="5000" placeholder="What's on your mind today?&#10;Share your thoughts, questions, wins, or anything you're feeling..."></textarea>
 
             <div class="composer-foot">
-              <button class="chip-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg> Add mood</button>
-              <button class="chip-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 12 22l-9-9V4h9Z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor"/></svg> Add tag</button>
-              <button class="chip-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg> Add location</button>
+              <button class="chip-btn" id="chip-mood"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg> Add mood</button>
+              <button class="chip-btn" id="chip-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.6 13.4 12 22l-9-9V4h9Z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor"/></svg> Add tag</button>
+              <button class="chip-btn" id="chip-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg> Add location</button>
               <span class="count" id="count">0/5000</span>
             </div>
 
             <div class="redact-row">
               <div class="redact-note">
-                <div class="sh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V6Z"/></svg></div>
+                <div class="sh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V6Z"/></svg></div>
                 <div id="status">Your text will be scanned and sensitive details (like names, emails, phone numbers) will be hidden before Gemini sees it.</div>
               </div>
               <button class="reflect-btn" id="reflect">
                 Reflect with Gemini
-                <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+                <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
               </button>
             </div>
           </section>
 
           <!-- PATTERN RADAR -->
-          <section class="card radar">
+          <section class="card radar" id="patterns">
             <div class="sec-head">
-              <div class="radar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 12 16 8"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
+              <div class="radar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 12 16 8"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
               <div class="h">Pattern Radar</div>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="#b9a0ff"><path d="M13 3 15.5 8.5 21 11l-5.5 2.5L13 19l-2.5-5.5L5 11l5.5-2.5Z"/></svg>
               <span class="radar-sub">AI-powered insights from your reflections</span>
-              <button class="view-all">View all <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+              <button class="view-all" id="radar-analyze-btn">Analyze patterns <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
             </div>
 
-            <div class="radar-body">
+            <div class="radar-body" id="radar-container">
               <div class="radar-left">
-                <div class="orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="9"/></svg></div>
+                <div class="orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="9"/></svg></div>
                 <div>
-                  <div class="q-lead">You keep returning to one question:</div>
-                  <div class="q">"Am I moving in the right direction?"</div>
-                  <div class="q-seen">Seen across 4 reflections</div>
+                  <div class="q-lead">Recurring theme:</div>
+                  <div class="q" id="radar-main-question">"Building momentum step by step"</div>
+                  <div class="q-seen" id="radar-count-label">Synthesized from your private journal entries</div>
                   <div class="tags">
-                    <span class="tg">career</span>
-                    <span class="tg">uncertainty</span>
-                    <span class="tg">building</span>
+                    <span class="tg">focus</span>
+                    <span class="tg">growth</span>
+                    <span class="tg">clarity</span>
                   </div>
                 </div>
               </div>
 
               <div class="radar-right">
                 <div class="rr-item">
-                  <div class="rr-ic rr-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg></div>
+                  <div class="rr-ic rr-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg></div>
                   <div>
-                    <div class="rr-lbl">Recurring theme</div>
-                    <div class="rr-val">Career &amp; Purpose</div>
+                    <div class="rr-lbl">Recurring focus</div>
+                    <div class="rr-val" id="radar-theme-1">Productivity & Purpose</div>
                   </div>
                   <div class="rr-right">
-                    <div class="bar"><i style="width:57%"></i></div>
-                    <div class="rr-pct">57%</div>
+                    <div class="bar"><i style="width:70%"></i></div>
+                    <div class="rr-pct">Active</div>
                   </div>
                 </div>
 
                 <div class="rr-item">
-                  <div class="rr-ic rr-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.5 5.5 0 0 0-8.8 1.4A5.5 5.5 0 0 0 3.2 5.6C1 7.9 1.4 11.6 4 14l8 7 8-7c2.6-2.4 3-6.1.8-8.4Z"/></svg></div>
+                  <div class="rr-ic rr-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 5.6a5.5 5.5 0 0 0-8.8 1.4A5.5 5.5 0 0 0 3.2 5.6C1 7.9 1.4 11.6 4 14l8 7 8-7c2.6-2.4 3-6.1.8-8.4Z"/></svg></div>
                   <div>
-                    <div class="rr-lbl">Emotional trend</div>
-                    <div class="rr-val">More positive this week</div>
+                    <div class="rr-lbl">Emotional tone</div>
+                    <div class="rr-val">Clearer after writing</div>
                   </div>
-                  <div class="rr-right"><div class="rr-trend">↑ +24%</div></div>
+                  <div class="rr-right"><div class="rr-trend">↑ Positive</div></div>
                 </div>
 
                 <div class="rr-item">
-                  <div class="rr-ic rr-yellow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/></svg></div>
+                  <div class="rr-ic rr-yellow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/></svg></div>
                   <div>
                     <div class="rr-lbl">Top insight</div>
-                    <div class="rr-val">You feel most alive when building something.</div>
+                    <div class="rr-val" id="radar-top-insight">Reflecting consistently brings clarity.</div>
                   </div>
                 </div>
               </div>
@@ -663,79 +803,53 @@ Share your thoughts, questions, wins, or anything you're feeling..."></textarea>
           <!-- TODAY'S INSIGHT -->
           <section class="card insight">
             <div class="ihead">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 15.5 8.5 21 11l-5.5 2.5L13 19l-2.5-5.5L5 11l5.5-2.5Z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 3 15.5 8.5 21 11l-5.5 2.5L13 19l-2.5-5.5L5 11l5.5-2.5Z"/></svg>
               <span class="t">Today's Insight</span>
             </div>
-            <blockquote id="insightQuote">"Clarity comes not from having all the answers, but from asking better questions."</blockquote>
-            <div class="by" id="insightBy">— Gemini</div>
+            <blockquote id="insight-quote">"Your reflections will become clearer when you give your thoughts a little space."</blockquote>
+            <div class="by" id="insight-author">— Gemini · private reflection</div>
             <svg class="leaf-bg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 20A7 7 0 0 1 4 13c0-6 8-9 8-9s8 3 8 9a7 7 0 0 1-7 7Z"/></svg>
           </section>
 
           <!-- YOUR MIND AT A GLANCE -->
           <section class="card glance">
             <div class="ghead">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-6 8-9 8-9s8 3 8 9a7 7 0 0 1-7 7Z"/><path d="M12 20V8"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 20A7 7 0 0 1 4 13c0-6 8-9 8-9s8 3 8 9a7 7 0 0 1-7 7Z"/><path d="M12 20V8"/></svg>
               <span class="t">Your Mind at a Glance</span>
             </div>
             <div class="glance-body">
               <div class="donut-wrap">
                 <svg width="130" height="130" viewBox="0 0 42 42">
                   <circle cx="21" cy="21" r="15.9" fill="none" stroke="#1a2233" stroke-width="6"/>
-                  <!-- Growth 3/7 -->
                   <circle cx="21" cy="21" r="15.9" fill="none" stroke="#a970ff" stroke-width="6" stroke-dasharray="42.9 57.1" stroke-dashoffset="25" stroke-linecap="round"/>
-                  <!-- Uncertainty 2/7 -->
                   <circle cx="21" cy="21" r="15.9" fill="none" stroke="#3fa9ff" stroke-width="6" stroke-dasharray="28.6 71.4" stroke-dashoffset="-17.9" stroke-linecap="round"/>
-                  <!-- Productivity 1/7 -->
                   <circle cx="21" cy="21" r="15.9" fill="none" stroke="#35d07f" stroke-width="6" stroke-dasharray="14.3 85.7" stroke-dashoffset="-46.5" stroke-linecap="round"/>
-                  <!-- Wellbeing 1/7 -->
                   <circle cx="21" cy="21" r="15.9" fill="none" stroke="#ffab40" stroke-width="6" stroke-dasharray="14.3 85.7" stroke-dashoffset="-60.8" stroke-linecap="round"/>
                 </svg>
                 <div class="donut-center">
                   <div>
-                    <div class="n">7</div>
+                    <div class="n" id="glance-count">0</div>
                     <div class="l">Entries</div>
                   </div>
                 </div>
               </div>
               <div class="legend">
-                <div class="lg-row"><span class="dot" style="background:#a970ff"></span><span class="lg-lbl">Growth</span><span class="lg-val">3</span></div>
-                <div class="lg-row"><span class="dot" style="background:#3fa9ff"></span><span class="lg-lbl">Uncertainty</span><span class="lg-val">2</span></div>
-                <div class="lg-row"><span class="dot" style="background:#35d07f"></span><span class="lg-lbl">Productivity</span><span class="lg-val">1</span></div>
-                <div class="lg-row"><span class="dot" style="background:#ffab40"></span><span class="lg-lbl">Wellbeing</span><span class="lg-val">1</span></div>
+                <div class="lg-row"><span class="dot" style="background:#a970ff"></span><span class="lg-lbl">Growth</span><span class="lg-val">—</span></div>
+                <div class="lg-row"><span class="dot" style="background:#3fa9ff"></span><span class="lg-lbl">Clarity</span><span class="lg-val">—</span></div>
+                <div class="lg-row"><span class="dot" style="background:#35d07f"></span><span class="lg-lbl">Productivity</span><span class="lg-val">—</span></div>
+                <div class="lg-row"><span class="dot" style="background:#ffab40"></span><span class="lg-lbl">Wellbeing</span><span class="lg-val">—</span></div>
               </div>
             </div>
-            <div class="glance-foot">Tap "Pattern Radar" to see deeper insights →</div>
+            <div class="glance-foot" id="glance-radar-link">Tap to see deeper pattern insights →</div>
           </section>
 
           <!-- RECENT REFLECTIONS -->
-          <section class="card recent">
+          <section class="card recent" id="recent-reflections">
             <div class="rhead">
               <span class="t">Recent Reflections</span>
-              <span class="va">View all <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
             </div>
-            <div class="refl">
-              <span class="rdot" style="background:#a970ff"></span>
-              <div>
-                <div class="time">Today, 11:32 PM</div>
-                <div class="txt">I've been thinking about whether I'm moving …</div>
-                <div class="tag"><b>Gemini</b> · 2 insights</div>
-              </div>
-            </div>
-            <div class="refl">
-              <span class="rdot" style="background:#3fa9ff"></span>
-              <div>
-                <div class="time">Sep 4, 7:10 PM</div>
-                <div class="txt">Small wins today — completed the frontend…</div>
-                <div class="tag"><b>Gemini</b> · Motivation boost</div>
-              </div>
-            </div>
-            <div class="refl">
-              <span class="rdot" style="background:#35d07f"></span>
-              <div>
-                <div class="time">Sep 2, 10:15 PM</div>
-                <div class="txt">Feeling a bit uncertain about the next steps…</div>
-                <div class="tag"><b>Gemini</b> · Perspective shift</div>
-              </div>
+            <div id="thread-list">
+              <div style="color:var(--text-mute); font-size:13px; padding:12px 0;">No reflections yet. Write your first thought!</div>
             </div>
           </section>
         </div>
@@ -746,217 +860,327 @@ Share your thoughts, questions, wins, or anything you're feeling..."></textarea>
     <div class="banner">
       <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 16.9 5.8 20.6l1.6-6.7L2.2 9.4l6.9-.6Z"/></svg></span>
       <span class="btext">You're building a better tomorrow, one reflection at a time.</span>
-      <span class="keep">Keep going <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+      <span class="keep">Keep going <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
     </div>
   </main>
 </div>
 
-<script>
-(() => {
-  "use strict";
+<!-- GUIDED PROMPTS MODAL -->
+<div class="prompt-overlay" id="prompt-overlay">
+  <div class="prompt-modal">
+    <div class="prompt-modal-head">
+      <div>
+        <h2>What would you like to explore?</h2>
+        <p>Choose a prompt and Gemini will help you reflect on it.</p>
+      </div>
+      <button class="prompt-close" id="close-prompts-btn">×</button>
+    </div>
+    <div class="prompt-list">
+      <button class="prompt-option" data-prompt="What has been taking up most of my mental space lately?">
+        What has been taking up most of my mental space lately?
+        <span>Notice what deserves your focus.</span>
+      </button>
+      <button class="prompt-option" data-prompt="What gave me energy today, and what drained it?">
+        What gave me energy today, and what drained it?
+        <span>Understand your emotional patterns.</span>
+      </button>
+      <button class="prompt-option" data-prompt="Is there something I am avoiding that I should face?">
+        Is there something I am avoiding that I should face?
+        <span>Make space for honest reflection.</span>
+      </button>
+      <button class="prompt-option" data-prompt="What is one thing I want to improve tomorrow?">
+        What is one thing I want to improve tomorrow?
+        <span>Turn thoughts into a positive step.</span>
+      </button>
+    </div>
+  </div>
+</div>
 
-  const $ = (id) => document.getElementById(id);
+<!-- VOICE LISTENING FLOATING INDICATOR -->
+<div class="voice-listening" id="voice-indicator">
+  <div class="voice-dot"></div>
+  <div>
+    <strong style="font-size:13px;">Listening…</strong>
+    <span style="font-size:11px; color:#84928c; display:block;">Speak naturally. Your words will appear in your journal.</span>
+  </div>
+</div>
 
-  const entry = $("entry");
-  const reflectBtn = $("reflect");
-  const status = $("status");
-  const count = $("count");
-  const insightQuote = $("insightQuote");
-  const insightBy = $("insightBy");
+<!-- FIREBASE AUTH & BACKEND LOGIC -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  let previewTimer;
-  let lastProtectedText = "";
+const $ = id => document.getElementById(id);
+let auth, user = null;
+let previewTimer;
 
-  async function api(path, options = {}) {
-    const response = await fetch(path, {
-      credentials: "include",
-      ...options,
-      headers: {
-        "Content-Type": "application/json",
-        ...(options.headers || {})
+// Load Config from Cloud Backend
+try {
+  const cfg = await (await fetch("/api/config")).json();
+  if (!cfg.apiKey) {
+    $("gate-error").textContent = "Firebase configuration is missing.";
+  } else {
+    const fbApp = initializeApp(cfg);
+    auth = getAuth(fbApp);
+
+    onAuthStateChanged(auth, async u => {
+      user = u;
+      $("gate").classList.toggle("hidden", !!u);
+      $("app").classList.toggle("hidden", !u);
+
+      if (u) {
+        const name = u.displayName || u.email.split('@')[0] || "Friend";
+        $("greeting-name").textContent = name;
+        $("user-display-name").textContent = name;
+        $("avatar-initial").textContent = name.charAt(0).toUpperCase();
+
+        await loadThread();
       }
     });
+  }
+} catch (e) {
+  $("gate-error").textContent = "Could not initialize authentication.";
+}
 
-    let body = {};
-    try {
-      body = await response.json();
-    } catch (_) {
-      body = {};
+// Sign-in / Sign-out
+$("signin").onclick = async () => {
+  try {
+    await signInWithPopup(auth, new GoogleAuthProvider());
+  } catch (e) {
+    $("gate-error").textContent = e.message;
+  }
+};
+$("signout-btn").onclick = () => signOut(auth);
+
+// Authenticated API Fetch
+async function api(path, opts = {}) {
+  if (!user) throw new Error("Please sign in first.");
+  const token = await user.getIdToken();
+  const res = await fetch(path, {
+    ...opts,
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+      ...(opts.headers || {})
     }
+  });
+  const body = await res.json();
+  if (!res.ok) throw new Error(body.error || `Request failed (${res.status})`);
+  return body;
+}
 
-    if (!response.ok) {
-      throw new Error(
-        body.error || `Request failed (${response.status})`
-      );
-    }
+// Input Character Counter & Real-time Redaction Preview
+const entry = $("entry");
+entry.addEventListener("input", () => {
+  clearTimeout(previewTimer);
+  const text = entry.value;
+  $("count").textContent = `${text.length}/5000`;
 
-    return body;
+  if (!text.trim()) {
+    $("status").textContent = "Your text will be scanned and sensitive details will be hidden before Gemini sees it.";
+    return;
   }
 
-  async function previewText(text) {
-    const result = await api("/api/preview", {
+  $("status").textContent = "Scanning locally for private details…";
+
+  previewTimer = setTimeout(async () => {
+    try {
+      const r = await api("/api/preview", {
+        method: "POST",
+        body: JSON.stringify({ text })
+      });
+      const summary = r.summary || [];
+      $("status").textContent = summary.length
+        ? `${summary.length} private detail(s) protected before Gemini.`
+        : "Privacy Shield active · text protected.";
+    } catch (e) {
+      $("status").textContent = "Protected view ready.";
+    }
+  }, 350);
+});
+
+// Reflect with Gemini Button
+$("reflect").onclick = async () => {
+  const text = entry.value.trim();
+  if (!text) return;
+
+  const reflectBtn = $("reflect");
+  reflectBtn.disabled = true;
+  $("status").textContent = "Gemini is reflecting on your thoughts…";
+
+  try {
+    const result = await api("/api/reflect", {
       method: "POST",
       body: JSON.stringify({ text })
     });
 
-    lastProtectedText =
-      result.redacted ??
-      result.protected_text ??
-      result.redacted_text ??
-      text;
-
-    return result;
-  }
-
-  if (entry) {
-    entry.addEventListener("input", () => {
-      clearTimeout(previewTimer);
-      const text = entry.value;
-
-      if (count) {
-        count.textContent = `${text.length}/5000`;
-      }
-
-      if (!text.trim()) {
-        lastProtectedText = "";
-        if (status) {
-          status.textContent = "Your text will be scanned and sensitive details (like names, emails, phone numbers) will be hidden before Gemini sees it.";
-        }
-        return;
-      }
-
-      if (status) {
-        status.textContent = "Scanning locally for private details…";
-      }
-
-      previewTimer = setTimeout(async () => {
-        try {
-          await previewText(text);
-          if (status) {
-            status.textContent = "Privacy Shield active: Sensitive details redacted before Gemini.";
-          }
-        } catch (error) {
-          console.error("Preview error:", error);
-          if (status) {
-            status.textContent = "Privacy scan ready.";
-          }
-        }
-      }, 350);
-    });
-  }
-
-  function renderReflection(result) {
-    const reply =
-      result?.reply ??
-      result?.reflection ??
-      result?.insight ??
-      result?.message ??
-      "";
-
-    if (!reply) return;
-
-    if (insightQuote) {
-      insightQuote.textContent = `"${reply}"`;
+    // Write output directly into "Today's Insight"
+    if (result.reply) {
+      $("insight-quote").textContent = `"${result.reply}"`;
+      $("insight-author").textContent = "— Gemini · private reflection";
     }
-    if (insightBy) {
-      insightBy.textContent = "— Gemini · private reflection";
+
+    entry.value = "";
+    $("count").textContent = "0/5000";
+    $("status").textContent = "Reflection saved privately to your timeline.";
+
+    await loadThread();
+  } catch (e) {
+    $("status").textContent = e.message || "Reflection failed.";
+  } finally {
+    reflectBtn.disabled = false;
+  }
+};
+
+// Load Saved Reflections into Timeline
+async function loadThread() {
+  try {
+    const res = await api("/api/entries");
+    const entries = res.entries || [];
+    $("entry-count").textContent = entries.length;
+    $("glance-count").textContent = entries.length;
+
+    const list = $("thread-list");
+    list.innerHTML = "";
+
+    if (!entries.length) {
+      list.innerHTML = '<div style="color:var(--text-mute); font-size:13px; padding:12px 0;">No reflections yet. Write your first thought!</div>';
+      return;
     }
+
+    entries.slice(0, 4).forEach(e => {
+      const d = e.created_at ? new Date(e.created_at).toLocaleDateString(undefined, { month: "short", day: "numeric" }) : "Recent";
+      const item = document.createElement("div");
+      item.className = "refl";
+      item.innerHTML = `
+        <span class="rdot" style="background:#a970ff"></span>
+        <div>
+          <div class="time">${d}</div>
+          <div class="txt">${escapeHtml(e.text.substring(0, 45))}…</div>
+          <div class="tag"><b>Gemini</b> · Private reflection</div>
+        </div>
+      `;
+      list.appendChild(item);
+    });
+  } catch (err) {
+    console.error("Failed loading thread:", err);
+  }
+}
+
+function escapeHtml(s) {
+  return String(s || "").replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" }[c]));
+}
+
+// Pattern Radar Button
+$("radar-analyze-btn").onclick = async () => {
+  const btn = $("radar-analyze-btn");
+  btn.disabled = true;
+  btn.textContent = "Analyzing…";
+
+  try {
+    const result = await api("/api/pattern-radar", { method: "POST", body: JSON.stringify({}) });
+    const patterns = result.patterns || result;
+
+    if (patterns.question) {
+      $("radar-main-question").textContent = `"${patterns.question}"`;
+    }
+    if (patterns.themes && patterns.themes[0]) {
+      $("radar-theme-1").textContent = patterns.themes[0].name || "Recurring theme";
+    }
+    if (patterns.shift) {
+      $("radar-top-insight").textContent = patterns.shift;
+    }
+
+    btn.textContent = "Refreshed ✓";
+  } catch (e) {
+    btn.textContent = "Analyze patterns";
+  } finally {
+    setTimeout(() => { btn.disabled = false; btn.textContent = "Analyze patterns"; }, 2000);
+  }
+};
+$("glance-radar-link").onclick = () => $("radar-analyze-btn").click();
+
+// Guided Prompts Modal Handlers
+const promptOverlay = $("prompt-overlay");
+$("tab-prompts").onclick = () => promptOverlay.classList.add("show");
+$("close-prompts-btn").onclick = () => promptOverlay.classList.remove("show");
+
+promptOverlay.onclick = (e) => {
+  if (e.target === promptOverlay) promptOverlay.classList.remove("show");
+};
+
+document.querySelectorAll(".prompt-option").forEach(btn => {
+  btn.onclick = () => {
+    promptOverlay.classList.remove("show");
+    entry.value = btn.dataset.prompt;
+    entry.dispatchEvent(new Event("input"));
+    entry.focus();
+  };
+});
+
+// Voice Journal Speech Recognition
+let recognition = null;
+const voiceIndicator = $("voice-indicator");
+
+$("tab-voice").onclick = () => {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    alert("Please use Google Chrome or Edge for voice journaling.");
+    return;
   }
 
-  if (reflectBtn && entry) {
-    reflectBtn.addEventListener("click", async () => {
-      const originalText = entry.value.trim();
-
-      if (!originalText) {
-        if (status) {
-          status.textContent = "Please write something first.";
-        }
-        entry.focus();
-        return;
-      }
-
-      clearTimeout(previewTimer);
-      const originalLabel = reflectBtn.innerHTML;
-
-      reflectBtn.disabled = true;
-      reflectBtn.setAttribute("aria-busy", "true");
-      reflectBtn.innerHTML = "Reflecting with Gemini&nbsp; ✦";
-
-      if (status) {
-        status.textContent = "Gemini is reflecting on your thoughts…";
-      }
-
-      try {
-        const preview = await previewText(originalText);
-        const protectedText =
-          preview.redacted ??
-          preview.protected_text ??
-          preview.redacted_text ??
-          lastProtectedText ??
-          originalText;
-
-        const result = await api("/api/reflect", {
-          method: "POST",
-          body: JSON.stringify({
-            text: protectedText
-          })
-        });
-
-        window.lastJournalReflection = result;
-        window.lastProtectedJournalText = protectedText;
-
-        renderReflection(result);
-
-        document.dispatchEvent(
-          new CustomEvent("journal:reflection", {
-            detail: result
-          })
-        );
-
-        entry.value = "";
-        if (count) count.textContent = "0/5000";
-        if (status) {
-          status.textContent = "Reflection saved privately. Look at Today's Insight!";
-        }
-
-      } catch (error) {
-        console.error("Gemini reflection failed:", error);
-        if (status) {
-          status.textContent = error.message || "Gemini could not answer.";
-        }
-      } finally {
-        reflectBtn.disabled = false;
-        reflectBtn.removeAttribute("aria-busy");
-        reflectBtn.innerHTML = originalLabel;
-      }
-    });
+  if (recognition) {
+    recognition.stop();
+    recognition = null;
+    voiceIndicator.classList.remove("show");
+    return;
   }
 
-  /* Active toggles for Tabs */
-  document.querySelectorAll(".composer-tabs .tab").forEach((tab) => {
-    tab.addEventListener("click", () => {
-      document.querySelectorAll(".composer-tabs .tab").forEach((t) => t.classList.remove("active"));
-      tab.classList.add("active");
-    });
-  });
+  recognition = new SpeechRecognition();
+  recognition.lang = "en-IN";
+  recognition.continuous = true;
+  recognition.interimResults = true;
 
-  /* Active toggles for Chips */
-  document.querySelectorAll(".chip-btn").forEach((chip) => {
-    chip.addEventListener("click", () => {
-      chip.classList.toggle("active");
-    });
-  });
+  recognition.onstart = () => {
+    voiceIndicator.classList.add("show");
+  };
 
-  /* Active toggles for Sidebar */
-  document.querySelectorAll(".nav a").forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      document.querySelectorAll(".nav a").forEach((a) => a.classList.remove("active"));
-      link.classList.add("active");
-    });
-  });
+  recognition.onresult = (event) => {
+    let transcript = "";
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      transcript += event.results[i][0].transcript;
+    }
+    entry.value = transcript;
+    entry.dispatchEvent(new Event("input"));
+  };
 
-})();
+  recognition.onerror = () => {
+    voiceIndicator.classList.remove("show");
+    recognition = null;
+  };
+
+  recognition.onend = () => {
+    voiceIndicator.classList.remove("show");
+    recognition = null;
+  };
+
+  recognition.start();
+};
+
+// Nav link smooth scrolling
+document.querySelectorAll(".nav a[data-section]").forEach(a => {
+  a.addEventListener("click", () => {
+    document.querySelectorAll(".nav a").forEach(l => l.classList.remove("active"));
+    a.classList.add("active");
+    const target = document.getElementById(a.dataset.section);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+// Chips toggling
+document.querySelectorAll(".chip-btn").forEach(chip => {
+  chip.onclick = () => chip.classList.toggle("active");
+});
 </script>
 </body>
 </html>
