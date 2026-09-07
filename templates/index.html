@@ -31,6 +31,7 @@
     font-size: 14px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   .hidden { display: none !important; }
@@ -223,7 +224,6 @@
     border: 1px solid rgba(255,255,255,.14);
     padding: 5px 14px 5px 6px;
     border-radius: 999px;
-    cursor: pointer;
   }
   .user-avatar {
     width: 32px; height: 32px; border-radius: 50%;
@@ -312,6 +312,11 @@
   .tab.active {
     background: linear-gradient(90deg, #2a2450, #241f45);
     color: #fff; border: 1px solid #3a3268;
+  }
+  .tab.listening {
+    background: rgba(255, 109, 125, 0.2) !important;
+    border-color: #ff6d7d !important;
+    color: #ff9aa7 !important;
   }
   .secure {
     margin-left: auto; display: flex; align-items: center; gap: 8px;
@@ -465,8 +470,6 @@
   .recent { padding: 20px 22px; }
   .recent .rhead { display: flex; align-items: center; margin-bottom: 10px; }
   .recent .rhead .t { font-size: 18px; font-weight: 700; }
-  .recent .rhead .va { margin-left: auto; color: #7fa8ff; font-size: 13px; font-weight: 600; display:flex; align-items:center; gap:6px; cursor: pointer; }
-  .recent .rhead .va svg { width: 14px; height: 14px; }
   .refl { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid #171f2e; }
   .refl:last-child { border-bottom: none; padding-bottom: 0; }
   .refl .rdot { width: 9px; height: 9px; border-radius: 50%; margin-top: 6px; flex: 0 0 auto; }
@@ -524,7 +527,7 @@
   /* VOICE LISTENING BADGE */
   .voice-listening {
     position: fixed; left: 50%; bottom: 30px; transform: translateX(-50%);
-    z-index: 10000; padding: 14px 22px; border-radius: 999px;
+    z-index: 10000; padding: 12px 22px; border-radius: 999px;
     background: #0f1628; border: 1px solid #5b6bff; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     display: none; align-items: center; gap: 14px;
   }
@@ -533,19 +536,71 @@
     width: 12px; height: 12px; border-radius: 50%; background: #35d07f;
     box-shadow: 0 0 12px #35d07f; animation: pulse 1.2s infinite;
   }
+  .voice-stop-btn {
+    background: rgba(255, 109, 125, 0.2);
+    border: 1px solid #ff6d7d;
+    color: #ff9aa7;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
   @keyframes pulse { 0%, 100% { transform: scale(0.9); opacity: 0.8; } 50% { transform: scale(1.2); opacity: 1; } }
 
-  @media (max-width: 1200px) {
-    .grid { grid-template-columns: 1fr; }
-    .right-col { flex-direction: row; flex-wrap: wrap; }
-    .right-col > .card { flex: 1 1 300px; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
+  /* ============================================================
+     MOBILE RESPONSIVE (Strictly max-width 860px — Desktop untouched)
+     ============================================================ */
+  @media (max-width: 860px) {
+    .app { flex-direction: column; }
+    .sidebar {
+      width: 100%;
+      flex: 0 0 auto;
+      border-right: none;
+      border-bottom: 1px solid #131a28;
+      padding: 16px;
+    }
+    .sidebar .spacer, .sidebar-foot, .shield-card, .built { display: none; }
+    .nav {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 8px;
+      padding-bottom: 4px;
+    }
+    .nav a {
+      white-space: nowrap;
+      padding: 8px 14px;
+      font-size: 13.5px;
+    }
+    .content { padding: 0 16px 20px; }
+    .hero {
+      margin: 0 -16px 20px;
+      padding: 20px 16px;
+    }
+    .hero-top { justify-content: space-between; }
+    .search-pill { display: none; }
+    .quote-script { display: none; }
+    .greeting { font-size: 26px; }
+    .greeting-sub { font-size: 14px; }
+    .stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat { padding: 14px; }
+    .stat .big { font-size: 20px; }
+    .grid { grid-template-columns: 1fr; gap: 16px; }
+    .radar-body { grid-template-columns: 1fr; }
+    .redact-row { flex-direction: column; align-items: stretch; gap: 12px; }
+    .reflect-btn { width: 100%; justify-content: center; }
+    .banner { margin: 18px 16px 0; flex-direction: column; text-align: center; gap: 10px; }
+    .banner .keep { margin: 0 auto; }
+    .composer-tabs { overflow-x: auto; padding-bottom: 6px; }
+    .secure { display: none; }
+  }
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- AUTH GATE (If logged out) -->
 <section id="gate">
   <div class="gate-inner">
     <div class="gate-logo">
@@ -571,9 +626,7 @@
   </div>
 </section>
 
-<!-- MAIN APP (Shown when logged in) -->
 <div class="app hidden" id="app">
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="brand">
       <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -603,7 +656,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         Timeline
       </a>
-      <a id="signout-btn" style="color:#ff6d7d; margin-top:14px;">
+      <a id="signout-btn" style="color:#ff6d7d; margin-top:8px;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         Sign Out
       </a>
@@ -629,10 +682,8 @@
     </div>
   </aside>
 
-  <!-- MAIN -->
   <main class="main">
     <div class="content">
-      <!-- HERO -->
       <section class="hero" id="home">
         <div class="hero-top">
           <div class="search-pill">
@@ -654,7 +705,6 @@
         <p class="greeting-sub">A clearer mind builds a brighter tomorrow.</p>
       </section>
 
-      <!-- STAT CARDS -->
       <section class="stats">
         <div class="stat">
           <div class="icon ic-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
@@ -693,11 +743,8 @@
         </div>
       </section>
 
-      <!-- BODY GRID -->
       <div class="grid">
-        <!-- LEFT COLUMN -->
         <div class="left-col">
-          <!-- COMPOSER -->
           <section class="card composer" id="write">
             <div class="composer-tabs">
               <button class="tab active" id="tab-write">
@@ -710,7 +757,7 @@
               </button>
               <button class="tab" id="tab-voice">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10a7 7 0 0 1-14 0"/><path d="M12 19v3"/></svg>
-                Voice Journal
+                <span id="voice-tab-label">Voice Journal</span>
               </button>
               <span class="secure">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
@@ -739,7 +786,6 @@
             </div>
           </section>
 
-          <!-- PATTERN RADAR -->
           <section class="card radar" id="patterns">
             <div class="sec-head">
               <div class="radar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 12 16 8"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
@@ -798,9 +844,7 @@
           </section>
         </div>
 
-        <!-- RIGHT COLUMN -->
         <div class="right-col">
-          <!-- TODAY'S INSIGHT -->
           <section class="card insight">
             <div class="ihead">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 3 15.5 8.5 21 11l-5.5 2.5L13 19l-2.5-5.5L5 11l5.5-2.5Z"/></svg>
@@ -811,7 +855,6 @@
             <svg class="leaf-bg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 20A7 7 0 0 1 4 13c0-6 8-9 8-9s8 3 8 9a7 7 0 0 1-7 7Z"/></svg>
           </section>
 
-          <!-- YOUR MIND AT A GLANCE -->
           <section class="card glance">
             <div class="ghead">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 20A7 7 0 0 1 4 13c0-6 8-9 8-9s8 3 8 9a7 7 0 0 1-7 7Z"/><path d="M12 20V8"/></svg>
@@ -843,7 +886,6 @@
             <div class="glance-foot" id="glance-radar-link">Tap to see deeper pattern insights →</div>
           </section>
 
-          <!-- RECENT REFLECTIONS -->
           <section class="card recent" id="recent-reflections">
             <div class="rhead">
               <span class="t">Recent Reflections</span>
@@ -856,7 +898,6 @@
       </div>
     </div>
 
-    <!-- BOTTOM BANNER -->
     <div class="banner">
       <span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 16.9 5.8 20.6l1.6-6.7L2.2 9.4l6.9-.6Z"/></svg></span>
       <span class="btext">You're building a better tomorrow, one reflection at a time.</span>
@@ -865,7 +906,6 @@
   </main>
 </div>
 
-<!-- GUIDED PROMPTS MODAL -->
 <div class="prompt-overlay" id="prompt-overlay">
   <div class="prompt-modal">
     <div class="prompt-modal-head">
@@ -896,16 +936,15 @@
   </div>
 </div>
 
-<!-- VOICE LISTENING FLOATING INDICATOR -->
 <div class="voice-listening" id="voice-indicator">
   <div class="voice-dot"></div>
   <div>
     <strong style="font-size:13px;">Listening…</strong>
-    <span style="font-size:11px; color:#84928c; display:block;">Speak naturally. Your words will appear in your journal.</span>
+    <span style="font-size:11px; color:#84928c; display:block;">Speak naturally. Auto-stops after 3s of silence.</span>
   </div>
+  <button class="voice-stop-btn" id="voice-stop-btn">Stop Recording</button>
 </div>
 
-<!-- FIREBASE AUTH & BACKEND LOGIC -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -914,7 +953,7 @@ const $ = id => document.getElementById(id);
 let auth, user = null;
 let previewTimer;
 
-// Load Config from Cloud Backend
+// Load Config from Backend
 try {
   const cfg = await (await fetch("/api/config")).json();
   if (!cfg.apiKey) {
@@ -942,7 +981,6 @@ try {
   $("gate-error").textContent = "Could not initialize authentication.";
 }
 
-// Sign-in / Sign-out
 $("signin").onclick = async () => {
   try {
     await signInWithPopup(auth, new GoogleAuthProvider());
@@ -969,7 +1007,7 @@ async function api(path, opts = {}) {
   return body;
 }
 
-// Input Character Counter & Real-time Redaction Preview
+// Text Input Counter & Preview
 const entry = $("entry");
 entry.addEventListener("input", () => {
   clearTimeout(previewTimer);
@@ -1014,7 +1052,6 @@ $("reflect").onclick = async () => {
       body: JSON.stringify({ text })
     });
 
-    // Write output directly into "Today's Insight"
     if (result.reply) {
       $("insight-quote").textContent = `"${result.reply}"`;
       $("insight-author").textContent = "— Gemini · private reflection";
@@ -1032,7 +1069,7 @@ $("reflect").onclick = async () => {
   }
 };
 
-// Load Saved Reflections into Timeline
+// Timeline loader
 async function loadThread() {
   try {
     const res = await api("/api/entries");
@@ -1071,7 +1108,7 @@ function escapeHtml(s) {
   return String(s || "").replace(/[&<>]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;" }[c]));
 }
 
-// Pattern Radar Button
+// Pattern Radar
 $("radar-analyze-btn").onclick = async () => {
   const btn = $("radar-analyze-btn");
   btn.disabled = true;
@@ -1100,7 +1137,7 @@ $("radar-analyze-btn").onclick = async () => {
 };
 $("glance-radar-link").onclick = () => $("radar-analyze-btn").click();
 
-// Guided Prompts Modal Handlers
+// Guided Prompts Handlers
 const promptOverlay = $("prompt-overlay");
 $("tab-prompts").onclick = () => promptOverlay.classList.add("show");
 $("close-prompts-btn").onclick = () => promptOverlay.classList.remove("show");
@@ -1118,54 +1155,92 @@ document.querySelectorAll(".prompt-option").forEach(btn => {
   };
 });
 
-// Voice Journal Speech Recognition
-let recognition = null;
+// ==========================================
+// VOICE JOURNAL (Auto-stop + Manual-stop fix)
+// ==========================================
+let activeRecognition = null;
+let silenceTimer = null;
 const voiceIndicator = $("voice-indicator");
+const voiceTab = $("tab-voice");
+const voiceTabLabel = $("voice-tab-label");
+const voiceStopBtn = $("voice-stop-btn");
 
-$("tab-voice").onclick = () => {
+function stopVoiceRecording() {
+  if (silenceTimer) {
+    clearTimeout(silenceTimer);
+    silenceTimer = null;
+  }
+  if (activeRecognition) {
+    try { activeRecognition.stop(); } catch (e) {}
+    activeRecognition = null;
+  }
+  voiceIndicator.classList.remove("show");
+  voiceTab.classList.remove("listening");
+  voiceTabLabel.textContent = "Voice Journal";
+}
+
+function resetSilenceTimer() {
+  if (silenceTimer) clearTimeout(silenceTimer);
+  // Auto-stops mic after 3 seconds of silence
+  silenceTimer = setTimeout(() => {
+    stopVoiceRecording();
+  }, 3000);
+}
+
+voiceTab.onclick = () => {
+  // If already recording, clicking the tab toggles it OFF
+  if (activeRecognition) {
+    stopVoiceRecording();
+    return;
+  }
+
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) {
-    alert("Please use Google Chrome or Edge for voice journaling.");
+    alert("Please use Google Chrome or Edge for voice recording.");
     return;
   }
 
-  if (recognition) {
-    recognition.stop();
-    recognition = null;
-    voiceIndicator.classList.remove("show");
-    return;
-  }
+  activeRecognition = new SpeechRecognition();
+  activeRecognition.lang = "en-IN";
+  activeRecognition.continuous = true;
+  activeRecognition.interimResults = true;
 
-  recognition = new SpeechRecognition();
-  recognition.lang = "en-IN";
-  recognition.continuous = true;
-  recognition.interimResults = true;
+  let baseText = entry.value ? entry.value.trim() + " " : "";
 
-  recognition.onstart = () => {
+  activeRecognition.onstart = () => {
     voiceIndicator.classList.add("show");
+    voiceTab.classList.add("listening");
+    voiceTabLabel.textContent = "Stop Recording ⏹";
+    resetSilenceTimer();
   };
 
-  recognition.onresult = (event) => {
+  activeRecognition.onresult = (event) => {
+    resetSilenceTimer();
     let transcript = "";
     for (let i = event.resultIndex; i < event.results.length; i++) {
       transcript += event.results[i][0].transcript;
     }
-    entry.value = transcript;
+    entry.value = baseText + transcript;
     entry.dispatchEvent(new Event("input"));
   };
 
-  recognition.onerror = () => {
-    voiceIndicator.classList.remove("show");
-    recognition = null;
+  activeRecognition.onerror = () => {
+    stopVoiceRecording();
   };
 
-  recognition.onend = () => {
-    voiceIndicator.classList.remove("show");
-    recognition = null;
+  activeRecognition.onend = () => {
+    stopVoiceRecording();
   };
 
-  recognition.start();
+  activeRecognition.start();
 };
+
+voiceStopBtn.onclick = () => stopVoiceRecording();
+
+// Auto-stop mic if page is hidden or user clicks away
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden && activeRecognition) stopVoiceRecording();
+});
 
 // Nav link smooth scrolling
 document.querySelectorAll(".nav a[data-section]").forEach(a => {
